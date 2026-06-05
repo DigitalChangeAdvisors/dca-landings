@@ -2,6 +2,17 @@
 
 > Las reglas de marca, sistema visual, tono, skills y flujo de producción están en `../CLAUDE.md` (raíz del workspace). Este archivo contiene solo lo específico de las landing pages comerciales.
 
+## ⚠️ Gate Obligatorio — Pre-audit ANTES de implementar (canónico 2026-06-05)
+
+TODA implementación, ajuste fino o nueva landing — incluyendo iteraciones sobre las 11 landings existentes — debe pasar por auditoría de dos skills **ANTES** de escribir código:
+
+1. `/behavioral-economics-c-level` — valida que el mecanismo BE es correcto para el arquetipo y la etapa del visitante
+2. `/ui-ux-pro-max` — valida que el patrón de interacción, layout y motion son apropiados para C-Level
+
+**Sin dictamen de ambas skills, no hay implementación.**
+
+Incidente que motivó la regla: S2 /returnai scrollytelling de 260vh — trampa UX de alta gravedad implementada sin audit previo (2026-06-05).
+
 ## Principios de Diseño para Landings
 
 - **Un solo CTA por landing** — la landing no informa, convierte.
