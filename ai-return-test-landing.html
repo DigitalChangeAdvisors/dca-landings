@@ -912,6 +912,13 @@ section {
   color: rgba(30,42,56,0.35);
   flex-shrink: 0;
   margin-top: 2px;
+  transition: color 0.2s ease;
+}
+.obstacle-item--critical:hover .obstacle-num { color: var(--dca-terracotta); }
+.obstacle-item--emerging:hover  .obstacle-num { color: var(--dca-gold); }
+.obstacle-item--latent:hover    .obstacle-num { color: var(--dca-teal); }
+@media (prefers-reduced-motion: reduce) {
+  .obstacle-num { transition: none; }
 }
 
 .obstacle-name {
