@@ -1021,132 +1021,60 @@ section {
 }
 
 /* ═══════════════════════════════════════════
-   BLOQUE 6 — CASO ANCLA FINANCIERO (NUEVO)
+   BLOQUE 6 — QUOTE DE CIERRE + CTA
+   Fondo: blanco · Borde oro arriba
    ═══════════════════════════════════════════ */
-.block-case-anchor {
-  background: #f3f3f3;
+.block-ceo-quote {
+  background: var(--dca-white);
   border-top: 3px solid var(--dca-gold);
-}
-
-.case-anchor-header {
+  padding: 80px 24px;
   text-align: center;
-  max-width: var(--text-max-width);
-  margin: 0 auto 48px;
 }
 
-.case-anchor-header h2 { margin-bottom: 14px; }
-
-.case-anchor-header p {
-  font-size: 15px;
-  color: rgba(30,42,56,0.65);
-  line-height: 1.6;
-}
-
-.case-anchor-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  max-width: 920px;
+.ceo-quote-inner {
+  max-width: 680px;
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-  .case-anchor-grid { grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.ceo-quote-mark {
+  font-family: var(--font-display);
+  font-size: 72px;
+  color: var(--dca-gold);
+  line-height: 0.6;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.65;
 }
 
-.case-context {
-  background: var(--dca-white);
-  border-radius: 10px;
-  border: 1px solid var(--dca-platinum);
-  padding: 32px;
-}
-
-.case-context-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: rgba(30,42,56,0.40);
-  margin-bottom: 16px;
-}
-
-.case-context h3 {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 16px;
+.ceo-quote-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
   color: var(--dca-carbon);
-  line-height: 1.5;
+  line-height: 1.55;
   margin-bottom: 20px;
 }
 
-.case-context-detail {
-  font-size: 14px;
-  color: rgba(30,42,56,0.65);
-  line-height: 1.6;
-}
-
-.case-context-detail p + p { margin-top: 8px; }
-
-.case-result {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.case-metric {
-  background: var(--dca-white);
-  border-radius: 10px;
-  border: 1px solid var(--dca-platinum);
-  border-left: 4px solid var(--dca-gold);
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.case-metric--teal {
-  border-left-color: var(--dca-teal);
-}
-
-.case-metric--pl {
-  border-left-color: var(--dca-gold);
-  background: rgba(164,129,17,0.03);
-}
-
-.case-metric-number {
-  font-family: var(--font-display);
-  font-size: 30px;
-  color: var(--dca-gold);
-  line-height: 1;
-  flex-shrink: 0;
-  min-width: 72px;
-}
-
-.case-metric--teal .case-metric-number { color: var(--dca-teal); }
-.case-metric--pl .case-metric-number { color: var(--dca-gold); font-size: 34px; }
-
-.case-metric-desc {
+.ceo-quote-attr {
   font-family: var(--font-body);
   font-size: 13px;
-  color: rgba(30,42,56,0.65);
-  line-height: 1.45;
+  color: rgba(30,42,56,0.50);
+  letter-spacing: 0.03em;
+  margin-bottom: 44px;
 }
 
-.case-metric-desc strong {
-  font-weight: 600;
-  color: var(--dca-carbon);
-  display: block;
-  font-size: 13px;
-  margin-bottom: 2px;
+.ceo-quote-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.case-attribution {
-  font-size: 11px;
-  color: rgba(30,42,56,0.38);
-  margin-top: 12px;
-  font-style: italic;
-  text-align: right;
+.ceo-quote-note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(30,42,56,0.42);
+  letter-spacing: 0.02em;
 }
 
 /* ═══════════════════════════════════════════
@@ -2009,70 +1937,18 @@ section {
 
 
 <!-- ═══════════════════════════════════════════
-     BLOQUE 6 · CASO ANCLA FINANCIERO (NUEVO)
-     Fondo: platino #f3f3f3 · Borde oro arriba
+     BLOQUE 6 · QUOTE DE CIERRE + CTA
+     Fondo: blanco · Borde oro arriba
      ═══════════════════════════════════════════ -->
-<section class="block-case-anchor">
-  <div class="container">
-
-    <div class="case-anchor-header">
-      <p class="section-label">Evidencia de campo</p>
-      <h2>Lo que el diagnóstico reveló en una gestora de inversiones</h2>
-      <p>Una organización con $3.2M invertidos en plataformas de IA y un equipo técnico que funcionaba — pero el retorno no llegaba al P&L.</p>
+<section class="block-ceo-quote">
+  <div class="ceo-quote-inner">
+    <span class="ceo-quote-mark">&ldquo;</span>
+    <p class="ceo-quote-text">Lo que más me sorprende no es cuántas organizaciones tienen obstáculos activos. Es cuántas ya lo intuían — y cuánto tiempo transcurrió sin el número preciso para poder actuar.</p>
+    <p class="ceo-quote-attr">César Lozano · CEO · Digital Change Advisors</p>
+    <div class="ceo-quote-cta">
+      <a href="https://tally.so/r/Np6e5W" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Iniciar mi diagnóstico →</a>
+      <span class="ceo-quote-note">Resultado inmediato · 25 minutos · Sin compromiso</span>
     </div>
-
-    <div class="case-anchor-grid">
-
-      <div class="case-context">
-        <p class="case-context-label">Contexto del caso · Sector financiero</p>
-        <h3>Gestora de inversiones latinoamericana · Inversión de $3.2M en plataformas de IA en 18 meses</h3>
-        <div class="case-context-detail">
-          <p>La tecnología estaba instalada. Los pilotos funcionaban técnicamente. El equipo de TI reportaba métricas de uso positivas.</p>
-          <p>El retorno, sin embargo, no aparecía en el P&L. La Junta comenzó a cuestionar la inversión.</p>
-          <p>El AI Return Test identificó el Índice de Urgencia Global inicial y los 3 obstáculos críticos que estaban bloqueando la captura de valor.</p>
-        </div>
-      </div>
-
-      <div class="case-result">
-
-        <div class="case-metric">
-          <div class="case-metric-number">19</div>
-          <div class="case-metric-desc">
-            <strong>IUG inicial</strong>
-            Índice de Urgencia Global al iniciar el diagnóstico — zona de riesgo alto
-          </div>
-        </div>
-
-        <div class="case-metric case-metric--teal">
-          <div class="case-metric-number">67</div>
-          <div class="case-metric-desc">
-            <strong>IUG tras intervención</strong>
-            Incorporación sostenida al flujo de trabajo directivo — condición de retorno documentable
-          </div>
-        </div>
-
-        <div class="case-metric">
-          <div class="case-metric-number">+13</div>
-          <div class="case-metric-desc">
-            <strong>Puntos en persistencia de clientes</strong>
-            Impacto medido en KPI de negocio, no en métricas de uso
-          </div>
-        </div>
-
-        <div class="case-metric case-metric--pl">
-          <div class="case-metric-number">$891K</div>
-          <div class="case-metric-desc">
-            <strong>En el P&L · 120 días</strong>
-            Retorno documentado y auditable en el estado de resultados
-          </div>
-        </div>
-
-        <p class="case-attribution">Gestora de inversiones · Hispanoamérica · Nombre del cliente bajo confidencialidad</p>
-
-      </div>
-
-    </div>
-
   </div>
 </section>
 
