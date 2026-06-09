@@ -13,6 +13,29 @@ TODA implementación, ajuste fino o nueva landing — incluyendo iteraciones sob
 
 Incidente que motivó la regla: S2 /returnai scrollytelling de 260vh — trampa UX de alta gravedad implementada sin audit previo (2026-06-05).
 
+## Arquitectura de CTAs en Landing Pages — Canónico (2026-06-09)
+
+Toda landing page de DCA debe tener exactamente **3 CTAs** que apunten a la misma URL del instrumento:
+
+| Posición | Elemento | Comportamiento |
+|----------|----------|----------------|
+| 1 | Header sticky | Siempre visible durante el scroll — acceso inmediato para visitante listo |
+| 2 | Hero (primer pantallazo) | Sin scroll requerido — captura al visitante con intención alta |
+| 3 | Bloque CTA final (fondo carbón) | Cierre de conversión para visitante que necesitó contexto completo |
+
+**Regla crítica:** Los CTAs 1 y 2 (header + hero) deben apuntar **directamente a la URL del instrumento**, NO a un anchor `#id` que haga scroll. El anchor de sección solo se usa para navegación interna sin intención de conversión.
+
+**Anti-patrón detectado (2026-06-09):** Header y hero con `href="#iniciar"` — esto hace scroll hasta el bloque CTA en lugar de llevar al test directamente. Visitante con intención alta tiene que bajar hasta el final de la página para acceder al test. Se corrigió en ART landing.
+
+**URL placeholder:** Mientras no esté disponible la URL real del instrumento, usar `href="#"` con comentario HTML:
+```html
+<!-- URL del AI Return Test: reemplazar # por la URL real cuando esté disponible -->
+```
+
+**Rationale BE:** El visitante C-Level que llega desde LinkedIn o referido ya está en etapa de acción — no necesita leer 10 bloques para hacer clic. El visitor de intención media scrollea de todas formas y llega al bloque CTA final. Los 3 CTAs capturan ambos arquetipos sin fricción.
+
+---
+
 ## Principios de Diseño para Landings
 
 - **Un solo CTA por landing** — la landing no informa, convierte.
