@@ -472,6 +472,39 @@ section {
   border-radius: 10px;
   border: 1px solid var(--dca-platinum);
   box-shadow: 0 2px 8px rgba(30,42,56,0.04);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.metric-item.metric-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.metric-item:nth-child(1) { transition-delay: 0ms; }
+.metric-item:nth-child(2) { transition-delay: 80ms; }
+.metric-item:nth-child(3) { transition-delay: 160ms; }
+.metric-item:nth-child(4) { transition-delay: 240ms; }
+
+.metric-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(30,42,56,0.10), 0 2px 8px rgba(46,139,118,0.07);
+}
+
+.metric-item.metric-in:hover {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 .metric-number {
@@ -1707,22 +1740,22 @@ section {
     <div class="metrics-grid">
 
       <div class="metric-item">
-        <span class="metric-number">14</span>
+        <span class="metric-number" data-count="14" data-suffix="">14</span>
         <span class="metric-label">Herramientas del Modelo ARIA</span>
       </div>
 
       <div class="metric-item">
-        <span class="metric-number">70+</span>
+        <span class="metric-number" data-count="70" data-suffix="+">70+</span>
         <span class="metric-label">Empresas clientes Latam</span>
       </div>
 
       <div class="metric-item">
-        <span class="metric-number">250+</span>
+        <span class="metric-number" data-count="250" data-suffix="+">250+</span>
         <span class="metric-label">Líderes en la Comunidad LARIA</span>
       </div>
 
       <div class="metric-item">
-        <span class="metric-number">120</span>
+        <span class="metric-number" data-count="120" data-suffix="">120</span>
         <span class="metric-label">Días para ROI documentado</span>
       </div>
 
@@ -2380,6 +2413,45 @@ section {
   </div>
 
 </footer>
+
+<script>
+  /* Metric cards: staggered entrance + count-up */
+  (function() {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.metric-item');
+    if (!items.length) return;
+
+    function countUp(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (reduced) { el.textContent = target + suffix; return; }
+      var duration = 1100;
+      var start = null;
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        el.textContent = Math.round(easeOut(progress) * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.classList.add('metric-in');
+          var num = el.querySelector('[data-count]');
+          if (num) countUp(num);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    items.forEach(function(item) { observer.observe(item); });
+  })();
+</script>
 
 <script>
   (function() {
