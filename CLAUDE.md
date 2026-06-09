@@ -164,5 +164,78 @@ Footer:
 
 ### Pendiente
 - ⏳ QA visual en navegador — iniciar con `ara/barco-sin-timon/`
-- ⏳ Configurar remote `production-landings` y crear repo `dca-landings`
-- ⏳ Iteración ART y Novela ReturnAI (si aplica)
+- ⏳ Iteración Novela ReturnAI (si aplica)
+
+### Fine-tuning ART — En curso (2026-06-08)
+- ✅ Repo `dca-landings` creado y remote `production-landings` configurado
+- ✅ Header/Footer corregidos: logo v2.2 canónico integrado, eslogan "De la inversión en IA al retorno que importa."
+- ✅ Auditoría completa UX + BE ejecutada (ambas skills) sección a sección
+- ✅ Hallazgos documentados en memoria: `project_art_landing_audit.md`
+- ⏳ Implementación de los 10 bloques (ver orden canónico abajo)
+
+---
+
+## Fine-Tuning ART Landing — Orden Canónico y Decisiones (2026-06-08)
+
+> Auditoría ejecutada por `/ui-ux-pro-max` + `/behavioral-economics-c-level` en sesión 34011bfd.  
+> Archivo: `landings/ai-return-test-landing.html` · Staging: `https://dca-returnai.github.io/dca-landings/ai-return-test-landing.html`
+
+### Nueva Secuencia Canónica (10 bloques + Header + Footer)
+
+| Pos | Bloque | Origen | Acción | Mecanismo BE |
+|-----|--------|--------|--------|--------------|
+| Header | Header | ✅ ya corregido | Mantener | — |
+| 1 | B1 Hero | B1 original | Ajustar | Aversión a pérdida + curiosity gap |
+| 2 | B2 Credibilidad ARIA | B5 original | **Reubicar** + ajustar urgente | Autoridad intelectual |
+| 3 | B3 El Entregable | B3 original | Ajustar | Reciprocidad + reducción incertidumbre |
+| 4 | B4 Marco 10 Obstáculos | B2 original | **Reubicar** + ajustar | Curiosity gap + reconocimiento |
+| 5 | B5 Mecánica del Test | B4 original | Ajustar | Autoridad del instrumento |
+| 6 | B6 Caso Ancla Financiero | **NUEVO** | Crear | Anclaje económico |
+| 7 | B7 Testimoniales | B6 original | Ajustar | Prueba social |
+| 8 | B8 Para quién es / no es | **NUEVO** | Crear | Exclusividad + calificación |
+| 9 | B9 Diferenciación vs. Vendors | **NUEVO** | Crear | Reencuadre competitivo |
+| 10 | B10 CTA Principal | B7 original | Ajustar | Conversión + efecto dotación |
+| — | B8 Reactivación (original) | B8 original | **ELIMINAR** | — |
+| Footer | Footer | ✅ ya corregido | Mantener | — |
+
+### Reglas canónicas ART Landing (fijadas por auditoría)
+
+- **H2 CTA canónico:** "Diagnóstico ejecutivo — 30 minutos. / El número que llevarás a tu próxima reunión de Junta." (pirámide invertida, 2 `<span class="line">`)
+- **Soporte botón canónico:** "Resultado inmediado · Confidencial · Sin compromiso" (orden de jerarquía C-Level: resultado primero)
+- **PROHIBIDO en ART:** "Sin honorarios y sin agenda comercial" → activa señal de alarma en C-Level. Reemplazar siempre por frame positivo de valor.
+- **Nota ARA interna:** ELIMINADA del bloque Entregable — no introducir $5,000 antes de que el CEO decida hacer el test gratuito.
+- **CTA prematuro en B3:** ELIMINADO — no hay CTAs en el cuerpo de la landing hasta el B10.
+- **B8 Reactivación:** ELIMINADO definitivamente — tercer CTA viola regla de CTA único; aversión a pérdida repetida señala desesperación.
+- **Fotos de testimoniales:** rectangulares `border-radius: 8px` — NUNCA circulares ni iniciales (anti-patrón explícito del CLAUDE.md).
+- **Dato LADA:** PROHIBIDO en toda la landing — reemplazar siempre por "Comunidad LARIA".
+- **"17 países" como presencia de firma:** PROHIBIDO — si se menciona comunidad, agregar framing: "Comunidad Skool".
+- **withholding note en B4:** debe ABRIR el bloque (no cerrarlo) — activa curiosity gap antes de mostrar los 10 obstáculos.
+- **Pull quote anclaje B5:** borde izquierdo oro 4px (no neutro) · canónico del website.
+- **B6 Caso Ancla:** fondo platino `#f3f3f3` · números en oro · borde oro en tarjeta · flujo $3.2M → IUG 19%→67% → $891K P&L · atribución: "Gestora de inversiones" (sin nombre de cliente).
+- **B9 Diferenciación:** tabla 2 cols, fondo platino, borde oro en columna DCA — versión condensada de la tabla del website `/returnai`.
+
+### Datos Canónicos para la Landing ART (invariables)
+
+- 10 obstáculos humanos y organizacionales
+- Índice de Urgencia Global (IUG) — nombre propio del instrumento
+- 9 dimensiones de análisis
+- 7 arquetipos de resultado
+- 30 minutos de aplicación
+- 5 minutos al reporte en correo
+- 10 páginas del reporte ejecutivo
+- 70+ organizaciones acompañadas (NO "17 países")
+- 250+ líderes en la Comunidad LARIA (nunca LADA)
+- Caso ancla: gestora de inversiones · $3.2M → $891K en P&L · 120 días
+- CTA botón verbatim: "Iniciar mi diagnóstico"
+- CTA soporte verbatim: "Resultado inmediato · Confidencial · Sin compromiso"
+
+### Deploy ART Landing
+
+```bash
+cd "/Users/cesarlozano/Documents/Presencia Digital DCA"
+git add landings/ai-return-test-landing.html
+git commit -m "landing/art: [descripción del cambio]"
+git subtree split --prefix=landings -b deploy-tmp-landings
+GIT_ASKPASS=/tmp/git_askpass_landings.sh GIT_TERMINAL_PROMPT=0 git -c credential.helper= push production-landings deploy-tmp-landings:main --force
+git branch -D deploy-tmp-landings
+```
