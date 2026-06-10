@@ -250,7 +250,35 @@ Cambiar el selector en el script según el destino del formulario de conversión
 - ✅ UTM script de propagación integrado en todos (selector `a[href*="tidycal.com"]`)
 - ✅ Desplegado en producción: `https://dca-returnai.github.io/dca-landings/ara/`
 
+### Ajuste estructural S1 hero ARA (2026-06-10)
+- ✅ 7 íconos integrados: `landings/images/ara-icon-[slug].png` (210×210px, en repo)
+- ✅ Hero restructurado en 8 landings. Orden nuevo:
+  - **Fila 1** (arquetipos): `div.hero-identity` — `img` 210×210 + `h1.hero-archetype-name`
+  - **Fila 2**: `h2.hero-title` centrado ancho completo (el antiguo H1 descriptivo)
+  - **Fila 3**: `div.hero-video-placeholder` 16:9 (label "Video próximamente")
+  - **Fila 4**: `div.hero-grid` doble columna — copy + métricas (sin cambios)
+  - **v0**: sin fila de identidad; `h1.hero-title` centrado reemplaza al H1 anterior
+- ✅ Lógica BE: H1 arquetipo activa confirmación de identidad antes de la propuesta de valor
+
+### Migración a CSS compartido + script de propagación (2026-06-10)
+- ✅ `landings/ara/ara-styles.css` — ~24K de CSS extraído de inline a archivo compartido
+- ✅ 8 HTMLs actualizados: `<style>` inline → `<link rel="stylesheet" href="[../]ara-styles.css">`
+  - v0: `href="ara-styles.css"` · Arquetipos: `href="../ara-styles.css"`
+- ✅ `landings/ara/propagate.py` — script de propagación HTML del v0 a los 7 espejos
+
+**Workflow canónico de fine-tuning ARA (desde 2026-06-10):**
+```
+Cambio de CSS       → editar ara-styles.css → deploy → 8 landings actualizadas
+Cambio HTML común   → editar ara/index.html → python3 propagate.py → deploy
+Cambio de arquetipo → editar solo ese archivo → deploy
+```
+
+**Secciones comunes** (propagadas por script): `entregables · testimoniales · proceso · cta-principal · credibilidad · conectores · tagline`
+**Secciones únicas** (preservadas por archivo): `hero · para-quien · anclaje · refuerzo`
+
 ### Pendiente
+- ⏳ Fine-tuning visual ARA (iniciar por v0, luego propagate.py)
+- ⏳ Insertar videos cuando estén en producción (reemplazar `div.hero-video-placeholder` por iframe/video)
 - ⏳ Iteración Novela ReturnAI (si aplica)
 
 ### Fine-tuning ART — CERRADO DEFINITIVO (2026-06-09)
