@@ -193,6 +193,10 @@ def main():
         html = html.replace(
             'class="btn-gold">Agendar mi sesión de diagnóstico<',
             f'class="btn-gold">{MIRROR_CTA}<')
+        # proceso-aria-link: inline text link en B4 sigue el mismo frame de visitante
+        html = html.replace(
+            '>Agenda tu sesión de diagnóstico →<',
+            f'>{MIRROR_CTA} →<')
 
         open(path, 'w', encoding='utf-8').write(html)
         print(f"✅  {slug}")
