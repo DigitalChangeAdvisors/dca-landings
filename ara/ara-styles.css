@@ -595,8 +595,8 @@ header {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--dca-platinum);
-  color: rgba(30,42,56,0.4);
+  background: rgba(30,42,56,0.1);
+  color: rgba(30,42,56,0.68);
   display: inline-flex;
   align-items: center;
   justify-content: center;
