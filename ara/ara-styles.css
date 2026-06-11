@@ -321,6 +321,9 @@ header {
   color: rgba(30,42,56,0.75);
   line-height: 1.6;
 }
+.entregable-card p + p {
+  margin-top: 12px;
+}
 
 /* ─── BLOQUE 3 · TESTIMONIALES ───────────────────────────── */
 #testimoniales {
