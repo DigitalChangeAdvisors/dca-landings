@@ -1214,3 +1214,141 @@ h2.hero-title .line { display: block; }
   .arquetipo-ctx__body p { font-size: 16px; }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA DE ANIMACIONES — ARA landings v1.0 · 2026-06-11
+   Todo scoped a .js-ready — progressive enhancement garantizado
+════════════════════════════════════════════════════════════════ */
+
+/* ─── D1 · Hero icon — spring entrance on page load ─────────── */
+@keyframes ara-icon-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.js-ready .hero-icon img {
+  animation: ara-icon-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* ─── A1 · Mask reveal — H2 y titulares de sección ──────────── */
+.js-ready .ara-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js-ready .ara-reveal.in { clip-path: inset(0 0 0% 0); }
+
+/* ─── A2 · Label fade-up — precede 120ms al H2 ──────────────── */
+.js-ready .ara-reveal--label {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+}
+.js-ready .ara-reveal--label.in { opacity: 1; transform: none; }
+
+/* ─── A3 · Stagger cards — fade-up con offset entre hijos ───── */
+.js-ready .ara-reveal--card {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js-ready .ara-reveal--card.in { opacity: 1; transform: none; }
+.js-ready .ara-reveal--card:nth-child(2) { transition-delay: 0.09s; }
+.js-ready .ara-reveal--card:nth-child(3) { transition-delay: 0.18s; }
+
+/* ─── A4 · Para-quién — columnas desde lados opuestos ───────── */
+.js-ready .ara-reveal--left {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+.js-ready .ara-reveal--right {
+  opacity: 0;
+  transform: translateX(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+.js-ready .ara-reveal--left.in,
+.js-ready .ara-reveal--right.in { opacity: 1; transform: none; }
+
+/* ─── C1 · Spring lift — tarjetas al hover ──────────────────── */
+.entregable-card,
+.testimonial-card,
+.conector-card {
+  transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 280ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+.entregable-card:hover,
+.testimonial-card:hover,
+.conector-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(30, 42, 56, 0.10);
+}
+
+/* ─── C2 · CTA lift + sombra teal ───────────────────────────── */
+.btn-primary {
+  transition: transform 200ms ease-out,
+              box-shadow 200ms ease-out,
+              opacity 200ms ease-out !important;
+}
+.btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 139, 118, 0.25);
+}
+.btn-gold {
+  transition: transform 200ms ease-out,
+              box-shadow 200ms ease-out,
+              opacity 200ms ease-out !important;
+}
+.btn-gold:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(164, 129, 17, 0.25);
+}
+.btn-outline {
+  transition: transform 200ms ease-out,
+              box-shadow 200ms ease-out,
+              background 200ms ease-out,
+              color 200ms ease-out !important;
+}
+.btn-outline:hover {
+  background: var(--dca-teal);
+  color: var(--dca-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46, 139, 118, 0.15);
+}
+
+/* ─── C3 · Header CTA — fill de izquierda a derecha ─────────── */
+.header-cta {
+  background-image: linear-gradient(to right, var(--dca-teal) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right center;
+  transition: background-position 220ms ease-out,
+              color 220ms ease-out !important;
+}
+.header-cta:hover {
+  background-position: left center;
+  background-color: transparent;
+  color: var(--dca-white);
+}
+
+/* ─── prefers-reduced-motion — todo visible al instante ─────── */
+@media (prefers-reduced-motion: reduce) {
+  .ara-reveal,
+  .ara-reveal--label,
+  .ara-reveal--card,
+  .ara-reveal--left,
+  .ara-reveal--right {
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .js-ready .hero-icon img { animation: none !important; }
+  .entregable-card, .testimonial-card, .conector-card,
+  .btn-primary, .btn-gold, .btn-outline, .header-cta {
+    transition: none !important;
+  }
+}
+
