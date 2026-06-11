@@ -178,6 +178,22 @@ def main():
         for sid, content in unique_content.items():
             html = replace_section(html, sid, content)
 
+        # Ajustar rutas relativas de imágenes: los arquetipos viven un
+        # nivel más adentro que v0 (ara/slug/ vs ara/)
+        html = html.replace('src="../images/', 'src="../../images/')
+        html = html.replace('href="../images/', 'href="../../images/')
+
+        # CTAs canónicos de espejo (visitante cálido — completó el ART).
+        # v0 usa el frame "Agendar mi sesión de diagnóstico" (visitante frío);
+        # los espejos usan "Analizar mis resultados con un especialista".
+        MIRROR_CTA = 'Analizar mis resultados con un especialista'
+        html = html.replace(
+            'class="header-cta">Agendar mi sesión de diagnóstico<',
+            f'class="header-cta">{MIRROR_CTA}<')
+        html = html.replace(
+            'class="btn-gold">Agendar mi sesión de diagnóstico<',
+            f'class="btn-gold">{MIRROR_CTA}<')
+
         open(path, 'w', encoding='utf-8').write(html)
         print(f"✅  {slug}")
 
