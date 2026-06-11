@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCA · Benchmark Big Four & Sistema de Prompts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dca-teal: #2e8b76;
+    --dca-gold: #a48111;
+    --dca-white: #ffffff;
+    --dca-carbon: #1e2a38;
+    --dca-terracotta: #c2593f;
+    --dca-platinum: #dfe3e1;
+    --dca-teal-bg-subtle: rgba(46,139,118,0.05);
+    --dca-teal-bg-band: rgba(46,139,118,0.12);
+    --font-display: 'Marcellus', Georgia, serif;
+    --font-body: 'Montserrat', 'Helvetica Neue', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dca-carbon);
+    background: #f8f8f6;
+  }
+
+  /* ── COVER ─────────────────────────────────────────────── */
+  .cover {
+    background: var(--dca-carbon);
+    color: var(--dca-white);
+    padding: 80px 60px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 340px; height: 100%;
+    background: rgba(46,139,118,0.08);
+    clip-path: polygon(80px 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .cover-tag {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dca-gold);
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1.25;
+    color: var(--dca-white);
+    max-width: 620px;
+    margin-bottom: 24px;
+  }
+  .cover-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin-bottom: 40px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+  }
+  .cover-meta span { color: var(--dca-gold); font-weight: 600; }
+
+  /* ── LAYOUT ─────────────────────────────────────────────── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+  section { padding: 64px 0; }
+  section + section { border-top: 1px solid var(--dca-platinum); }
+
+  /* ── SECTION HEADERS ─────────────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dca-teal);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--dca-carbon);
+    margin-bottom: 16px;
+  }
+  .section-intro {
+    font-size: 16px;
+    font-weight: 400;
+    color: #4a5568;
+    max-width: 700px;
+    margin-bottom: 40px;
+  }
+
+  /* ── GOLD ACCENT BLOCK ───────────────────────────────────── */
+  .accent-block {
+    border-left: 4px solid var(--dca-gold);
+    padding: 20px 24px;
+    background: rgba(164,129,17,0.04);
+    border-radius: 0 8px 8px 0;
+    margin: 32px 0;
+  }
+  .accent-block p {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--dca-carbon);
+    line-height: 1.6;
+  }
+
+  /* ── BENCHMARK TABLE ─────────────────────────────────────── */
+  .benchmark-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 14px;
+  }
+  .benchmark-table th {
+    background: var(--dca-carbon);
+    color: var(--dca-white);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  .benchmark-table th:first-child { border-radius: 8px 0 0 0; }
+  .benchmark-table th:last-child  { border-radius: 0 8px 0 0; }
+  .benchmark-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--dca-platinum);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .benchmark-table tr:last-child td { border-bottom: none; }
+  .benchmark-table tr:nth-child(even) td { background: var(--dca-teal-bg-subtle); }
+  .benchmark-table td:first-child { font-weight: 700; color: var(--dca-teal); white-space: nowrap; }
+  .benchmark-table td.tick { color: var(--dca-teal); font-weight: 700; font-size: 16px; text-align: center; }
+  .benchmark-table td.cross { color: #999; font-size: 16px; text-align: center; }
+
+  /* ── PRINCIPLE CARDS ─────────────────────────────────────── */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .principle-card {
+    background: var(--dca-white);
+    border: 1px solid var(--dca-platinum);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .principle-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--dca-teal);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .principle-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--dca-carbon);
+    margin-bottom: 10px;
+  }
+  .principle-card p {
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+  .principle-card .rule {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: var(--dca-teal-bg-subtle);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dca-teal);
+  }
+
+  /* ── PROMPT CARDS ────────────────────────────────────────── */
+  .prompt-section {
+    background: var(--dca-white);
+    border: 1px solid var(--dca-platinum);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .prompt-header {
+    background: var(--dca-carbon);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .prompt-badge {
+    background: var(--dca-gold);
+    color: var(--dca-white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .prompt-header h3 {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dca-white);
+  }
+  .prompt-body { padding: 24px; }
+  .prompt-use {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dca-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .prompt-desc {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .prompt-box {
+    background: #f0f4f8;
+    border: 1px solid #d1dce8;
+    border-radius: 8px;
+    padding: 20px 22px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--dca-carbon);
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+  .prompt-box .var { color: var(--dca-teal); font-weight: 700; }
+  .prompt-box .comment { color: #8899aa; font-style: italic; }
+  .copy-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: var(--dca-teal);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+  }
+  .copy-btn:hover { background: #247060; }
+
+  /* ── CODE BLOCK ─────────────────────────────────────────── */
+  .code-block {
+    background: #1a2332;
+    border-radius: 10px;
+    padding: 24px 28px;
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+  .code-block pre {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #c8d3e0;
+    margin: 0;
+  }
+  .code-block .c-prop { color: #79c0ff; }
+  .code-block .c-val  { color: #a5d6ff; }
+  .code-block .c-hex  { color: #ffa657; }
+  .code-block .c-sel  { color: #7ee787; }
+  .code-block .c-comment { color: #6a737d; font-style: italic; }
+
+  /* ── CHECKLIST ───────────────────────────────────────────── */
+  .checklist {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--dca-carbon);
+    line-height: 1.5;
+  }
+  .checklist li::before {
+    content: '✓';
+    color: var(--dca-teal);
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .checklist.single { grid-template-columns: 1fr; }
+
+  /* ── PROCESS STEPS ───────────────────────────────────────── */
+  .steps { margin: 32px 0; }
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--dca-teal);
+    color: var(--dca-white);
+    font-family: var(--font-display);
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-content h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dca-carbon);
+    margin-bottom: 6px;
+  }
+  .step-content p {
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  /* ── PLATFORM TABS ───────────────────────────────────────── */
+  .platform-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--dca-platinum);
+    margin-bottom: 28px;
+  }
+  .platform-tab {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .platform-tab.active {
+    color: var(--dca-teal);
+    border-bottom-color: var(--dca-teal);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── ANTI-PATTERN TABLE ──────────────────────────────────── */
+  .anti-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 24px 0;
+  }
+  .anti-table th {
+    background: var(--dca-terracotta);
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+  }
+  .anti-table th:first-child { border-radius: 8px 0 0 0; }
+  .anti-table th:last-child  { border-radius: 0 8px 0 0; }
+  .anti-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--dca-platinum);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .anti-table tr:last-child td { border-bottom: none; }
+  .anti-table td.bad { color: var(--dca-terracotta); font-weight: 600; }
+  .anti-table td.good { color: var(--dca-teal); font-weight: 600; }
+
+  /* ── METRIC CALLOUTS ─────────────────────────────────────── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .metric-card {
+    background: var(--dca-white);
+    border: 1px solid var(--dca-platinum);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .metric-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--dca-teal);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  .doc-footer {
+    background: var(--dca-carbon);
+    color: rgba(255,255,255,0.5);
+    padding: 32px 40px;
+    text-align: center;
+    font-size: 13px;
+  }
+  .doc-footer strong { color: var(--dca-gold); }
+
+  /* ── PLATFORM BADGE ──────────────────────────────────────── */
+  .platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--dca-teal-bg-subtle);
+    border: 1px solid rgba(46,139,118,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dca-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 680px) {
+    .principles-grid { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .checklist { grid-template-columns: 1fr; }
+    .cover { padding: 48px 24px; }
+    .cover h1 { font-size: 28px; }
+    .container { padding: 0 20px; }
+  }
+
+  @media print {
+    .prompt-box { background: #f5f7fa; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-tag">Digital Change Advisors · Rebranding 2026</div>
+  <h1>Benchmark Big Four &amp; Sistema de Diseño para Landing Pages C-Level</h1>
+  <p class="cover-sub">Análisis comparativo de McKinsey, Deloitte, Accenture y BCG. Principios de diseño calibrados para DCA. Biblioteca de prompts para PageBuilder.gg y Groovepages.</p>
+  <div class="cover-meta">
+    <div>Sistema <span>ReturnAI</span></div>
+    <div>Brand Book <span>DCA 2026 v1.0</span></div>
+    <div>Audiencia <span>CEO · CTO · COO</span></div>
+  </div>
+</div>
+
+<div style="background:#fff;">
+
+<!-- ══ SECCIÓN 1: POR QUÉ EL DISEÑO DECIDE ANTES QUE EL COPY ══ -->
+<section>
+<div class="container">
+  <div class="section-label">Fundamento estratégico</div>
+  <h2 class="section-title">El diseño decide en los primeros 3 segundos</h2>
+  <p class="section-intro">Un CEO que visita 4 páginas por semana de McKinsey, BCG, Deloitte y Gartner tiene un estándar visual calibrado de forma inconsciente. Antes de leer una sola palabra, su cerebro ejecuta una evaluación de credibilidad basada exclusivamente en señales visuales. Si tu página no pasa ese filtro, el copy no llega a leerse.</p>
+
+  <div class="accent-block">
+    <p>El diseño no es decoración — es la primera capa de credibilidad de una firma de consultoría. Las Big Four lo saben desde hace décadas: sus páginas comunican "firma de alto valor" antes de que el prospecto procese cualquier argumento.</p>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-num">3s</div>
+      <div class="metric-label">Evaluación visual inconsciente</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">94%</div>
+      <div class="metric-label">Decisiones de credibilidad basadas en diseño</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">40%</div>
+      <div class="metric-label">Superficie en blanco en páginas Big Four</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">2-3</div>
+      <div class="metric-label">Colores máximos en composición de alta autoridad</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ SECCIÓN 2: BENCHMARK BIG FOUR ══════════════════════ -->
+<section style="background:#f8f8f6;">
+<div class="container">
+  <div class="section-label">Análisis comparativo</div>
+  <h2 class="section-title">Los 11 elementos que comparten todas las firmas Big Four</h2>
+  <p class="section-intro">Análisis de McKinsey.com, Deloitte.com, Accenture.com y BCG.com. Estos elementos son los invariantes de diseño que producen la sensación de "firma de primer nivel" independientemente del sector o el color de marca.</p>
+
+  <table class="benchmark-table">
+    <thead>
+      <tr>
+        <th>Elemento</th>
+        <th>McKinsey</th>
+        <th>Deloitte</th>
+        <th>Accenture</th>
+        <th>BCG</th>
+        <th>Traducción para DCA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1 · Whitespace dominante</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Padding entre secciones mínimo 80px. Whitespace ~40% de superficie.</td>
+      </tr>
+      <tr>
+        <td>2 · Máx. 2 familias tipográficas</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Marcellus (display) + Montserrat (cuerpo). Sin excepciones.</td>
+      </tr>
+      <tr>
+        <td>3 · Tipografía serif en titulares</td>
+        <td class="tick">✓</td>
+        <td class="cross">—</td>
+        <td class="cross">—</td>
+        <td class="tick">✓</td>
+        <td>Marcellus en H1/H2. Transmite autoridad editorial, no tecnológica.</td>
+      </tr>
+      <tr>
+        <td>4 · Paleta de 1 color + neutros</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Teal #2e8b76 como color único de marca. Oro #a48111 solo para acentos.</td>
+      </tr>
+      <tr>
+        <td>5 · Fondo blanco dominante (70%+)</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Ratio obligatorio: 70% blanco / 20% teal / 10% oro.</td>
+      </tr>
+      <tr>
+        <td>6 · CTAs no agresivos</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>"Inicia tu diagnóstico" vs "¡Regístrate ahora!". Invitación, no presión.</td>
+      </tr>
+      <tr>
+        <td>7 · Datos y métricas en display grande</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Números en Marcellus 48px+ con línea dorada de acento.</td>
+      </tr>
+      <tr>
+        <td>8 · Sin pop-ups ni urgencia artificial</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Anti-patrón absoluto DCA. Fallo automático de auditoría.</td>
+      </tr>
+      <tr>
+        <td>9 · Contenedor de texto ≤ 720px</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Líneas de cuerpo ≤ 720px ancho. No "full bleed" de texto.</td>
+      </tr>
+      <tr>
+        <td>10 · Tarjetas con borde sutil, sin sombra dramática</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Border-radius 8-12px. Box-shadow: 0 2px 8px rgba(30,42,56,0.06).</td>
+      </tr>
+      <tr>
+        <td>11 · Sin stock photos genéricos</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td class="tick">✓</td>
+        <td>Iconografía propietaria DCA (obstáculos + vectores + arquetipos).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ══ SECCIÓN 3: 7 PRINCIPIOS DCA ═══════════════════════ -->
+<section>
+<div class="container">
+  <div class="section-label">Sistema de diseño DCA</div>
+  <h2 class="section-title">Los 7 principios de diseño C-Level calibrados para DCA</h2>
+  <p class="section-intro">Estos principios son la traducción directa del benchmark Big Four al brand book DCA. Cada uno tiene un comportamiento específico que se puede implementar en PageBuilder.gg o en Groovepages con código HTML/CSS.</p>
+
+  <div class="principles-grid">
+    <div class="principle-card">
+      <div class="principle-num">01</div>
+      <h3>Whitespace como autoridad</h3>
+      <p>El espacio en blanco no es espacio vacío — es una señal de confianza. Las firmas top no llenan cada pixel. El C-Level interpreta el espacio como abundancia de recursos y selectividad.</p>
+      <div class="rule">Padding secciones ≥ 80px · Whitespace ~40% de la página</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">02</div>
+      <h3>Tipografía con doble voz</h3>
+      <p>Marcellus dice "firma con historia y criterio". Montserrat dice "pensamiento claro y moderno". Juntos crean la tensión que una firma de consultoría premium necesita: tradición + rigor contemporáneo.</p>
+      <div class="rule">Marcellus en titulares · Montserrat en cuerpo · Sin excepciones</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">03</div>
+      <h3>El oro solo donde importa</h3>
+      <p>Oro #a48111 es el color de la atención ejecutiva. Usado en todo, pierde poder. Usado en tres lugares por página (línea de acento, dato clave, CTA secundario), dirige la mirada con precisión quirúrgica.</p>
+      <div class="rule">Oro máximo 10% · Siempre sólido, nunca en opacidad</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">04</div>
+      <h3>Datos en primer plano</h3>
+      <p>Los C-Level procesan números antes que narrativa. Los datos en Marcellus grande, con línea dorada, dicen "esta firma mide lo que hace". Es el equivalente visual de las hojas de cálculo de McKinsey.</p>
+      <div class="rule">Números en Marcellus 40-48px · Línea dorada de 3-4px a la izquierda</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">05</div>
+      <h3>Columna de lectura estrecha</h3>
+      <p>El cerebro humano lee cómodamente entre 55-75 caracteres por línea. Líneas más largas aumentan la fatiga de lectura. Las Big Four contienen su texto en columnas de 680-720px máximo.</p>
+      <div class="rule">Contenedor de texto ≤ 720px · Layout con columnas ≤ 1100px</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">06</div>
+      <h3>CTAs de invitación, no de presión</h3>
+      <p>Un CEO rechaza instintivamente el lenguaje de venta. "Descarga gratis", "Regístrate ya" activan su filtro de escepticismo. "Diagnostica el retorno de tu inversión" lo invita a tomar control.</p>
+      <div class="rule">Verbos en primera persona · Sin urgencia artificial · Sin ofertas</div>
+    </div>
+    <div class="principle-card" style="grid-column: span 2;">
+      <div class="principle-num">07</div>
+      <h3>Jerarquía cromática con ratio fijo</h3>
+      <p>El ratio 70/20/10 no es arbitrario: replica exactamente la proporción que usan McKinsey (negro/verde/blanco) y Deloitte (blanco/verde/negro). El cerebro del C-Level reconoce ese patrón como señal de marca seria, aunque no lo pueda articular conscientemente.</p>
+      <div class="rule">70% Blanco #ffffff · 20% Teal #2e8b76 · 10% Oro #a48111</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ SECCIÓN 4: ANTI-PATRONES ══════════════════════════ -->
+<section style="background:#f8f8f6;">
+<div class="container">
+  <div class="section-label">Señales de alarma</div>
+  <h2 class="section-title">Lo que destruye la credibilidad en 3 segundos</h2>
+  <p class="section-intro">Estos anti-patrones son fallo automático de auditoría. Ninguno de ellos aparece en páginas de McKinsey, Deloitte, Accenture o BCG. Su presencia en una landing DCA borra instantáneamente el trabajo de copy y estrategia.</p>
+
+  <table class="anti-table">
+    <thead>
+      <tr>
+        <th>Anti-patrón</th>
+        <th>Qué comunica al C-Level</th>
+        <th>Alternativa DCA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="bad">Pop-up de captura</td>
+        <td>Esto es un lead magnet disfrazado</td>
+        <td class="good">CTA integrado al bloque de valor</td>
+      </tr>
+      <tr>
+        <td class="bad">Countdown timer</td>
+        <td>Esta empresa usa tácticas de e-commerce</td>
+        <td class="good">Urgencia real basada en consecuencias de inacción</td>
+      </tr>
+      <tr>
+        <td class="bad">Stock photos de negocios</td>
+        <td>No tienen identidad visual propia</td>
+        <td class="good">Iconografía propietaria DCA + whitespace</td>
+      </tr>
+      <tr>
+        <td class="bad">Gradientes de color</td>
+        <td>Diseño de startup 2015, no firma premium</td>
+        <td class="good">Colores planos del brand book, fondos sólidos</td>
+      </tr>
+      <tr>
+        <td class="bad">Texto todo en MAYÚSCULAS</td>
+        <td>Lenguaje de venta, no de consultoría</td>
+        <td class="good">Labels en caps: máximo 12px con letter-spacing</td>
+      </tr>
+      <tr>
+        <td class="bad">Chatbot flotante</td>
+        <td>Esto es un SaaS, no una firma de consultoría</td>
+        <td class="good">Formulario de contacto contextual, elegante</td>
+      </tr>
+      <tr>
+        <td class="bad">Más de 3 colores en pantalla</td>
+        <td>Sin identidad visual cohesionada</td>
+        <td class="good">Paleta DCA de 6 colores, máx. 3 por composición</td>
+      </tr>
+      <tr>
+        <td class="bad">"Queda solo 1 cupo"</td>
+        <td>Esta es una táctica de urgencia falsa</td>
+        <td class="good">El Assessment tiene capacidad real, sin mención de cupos</td>
+      </tr>
+      <tr>
+        <td class="bad">Oro en baja opacidad</td>
+        <td>Diseño inconsistente, sin criterio</td>
+        <td class="good">Oro siempre sólido #a48111 — regla sin excepción</td>
+      </tr>
+      <tr>
+        <td class="bad">Sticky bar "¡Hazte cliente!"</td>
+        <td>Presión de venta permanente</td>
+        <td class="good">Navegación limpia, CTA en posición estructural del bloque</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ══ SECCIÓN 5: PROCESO DE IMPLEMENTACIÓN ══════════════ -->
+<section>
+<div class="container">
+  <div class="section-label">Metodología de producción</div>
+  <h2 class="section-title">El proceso de 5 fases para producir una landing DCA</h2>
+  <p class="section-intro">Este proceso aplica para cualquiera de las tres páginas (AI Return Test, Libro ReturnAI, AI Return Assessment) y en ambas plataformas (PageBuilder.gg y Groovepages).</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Brief estratégico y psicográfico</h4>
+        <p>Antes de diseñar cualquier cosa, defines el rol de la página dentro de la escalera de valor, el estado mental del CEO que llega a ella, y sus objeciones específicas. Sin este paso, el diseño será decorativo pero no persuasivo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Arquitectura de bloques con función persuasiva</h4>
+        <p>Cada sección tiene un rol en el argumento: desactiva una objeción, refuerza la credibilidad, o dirige hacia la acción. Defines la secuencia antes de escribir una línea de copy o tocar el diseñador.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Copy calibrado para C-Level</h4>
+        <p>Titulares con especificidad (números, plazos, métricas), cuerpo de 3-4 líneas máximo por bloque, CTAs en primera persona. El copy sigue la arquitectura de bloques, nunca la precede.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Prompt de diseño con brand book integrado</h4>
+        <p>Usas los prompts de esta biblioteca para instruir al asistente de IA de PageBuilder.gg, o para generar el código HTML/CSS base para Groovepages. El prompt incluye paleta, tipografía, espaciado y anti-patrones.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Auditoría visual contra el checklist DCA</h4>
+        <p>Antes de publicar, verificas cada elemento del checklist: tipografía, ratio cromático, whitespace, anti-patrones, mobile. Una página que pasa la auditoría puede competir visualmente con las Big Four.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ SECCIÓN 6: BIBLIOTECA DE PROMPTS ══════════════════ -->
+<section style="background:#f8f8f6;">
+<div class="container">
+  <div class="section-label">Biblioteca de prompts · Diseño DCA</div>
+  <h2 class="section-title">Prompts calibrados para PageBuilder.gg y Groovepages</h2>
+  <p class="section-intro">Cada prompt está listo para usar. Copia el bloque completo, reemplaza las variables marcadas en <span style="color:var(--dca-teal);font-weight:700;">[VERDE]</span> con el contenido específico de la página, y pégalo directamente en el asistente de IA o en el editor de código.</p>
+
+  <!-- PROMPT 1: Sistema Global -->
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <span class="prompt-badge">Prompt 1</span>
+      <h3>Sistema de identidad visual — Inicio de cualquier página</h3>
+    </div>
+    <div class="prompt-body">
+      <div class="prompt-use">Cuándo usarlo</div>
+      <p class="prompt-desc">Úsalo como primer prompt en PageBuilder.gg antes de cualquier instrucción de diseño. Establece el sistema visual completo de DCA para que el asistente tenga contexto en toda la sesión.</p>
+      <div class="prompt-box" id="p1">
+Eres el asistente de diseño de Digital Change Advisors (DCA), una firma de consultoría senior especializada en adopción de IA para empresas. Tu audiencia son CEO, CTO y COO. El estándar de referencia es McKinsey, Deloitte y BCG.
+
+SISTEMA TIPOGRÁFICO OBLIGATORIO:
+— Titulares (H1, H2): Marcellus (serif, Google Fonts). Mínimo 40px desktop, 28px móvil.
+— Cuerpo y todo lo demás: Montserrat. Pesos disponibles: Light 300, Regular 400, Medium 500, SemiBold 600, Bold 700.
+— Nunca usar otra fuente. Nunca usar Marcellus en menos de 24px.
+
+PALETA CROMÁTICA (6 colores canónicos):
+— Verde Agua DCA (teal): #2e8b76 — color de marca principal
+— Dorado Ejecutivo (oro): #a48111 — solo para acentos, siempre sólido, nunca en opacidad
+— Blanco Institucional: #ffffff — fondo principal
+— Carbón DCA: #1e2a38 — texto de cuerpo, fondos oscuros
+— Gris Claro (platino): #dfe3e1 — fondos de tarjetas, separadores
+— Terracota: #c2593f — solo para señales de alerta, nunca como CTA
+
+RATIO CROMÁTICO OBLIGATORIO: 70% blanco / 20% teal / 10% oro. Máximo 3 colores por composición.
+
+ESPACIADO (señal de autoridad):
+— Padding entre secciones: mínimo 80px desktop / 48px móvil
+— Columna de texto: máximo 720px de ancho
+— Layout con columnas: máximo 1100px de ancho
+— Whitespace objetivo: ~40% de la superficie total
+
+COMPONENTES:
+— Tarjetas: border-radius 8-12px, sombra sutil (0 2px 8px rgba(30,42,56,0.06))
+— Botones CTA: fondo #2e8b76, texto blanco, Montserrat Bold, border-radius 8px, mínimo 48px alto
+— Línea de acento dorado: 3-4px borde izquierdo #a48111 en bloques de datos o entregables
+— Fondos de sección alternas: rgba(46,139,118,0.05) — NO usar teal sólido como fondo
+
+ANTI-PATRONES (NUNCA usar):
+— Pop-ups, countdown timers, "queda 1 cupo", chatbot flotante
+— Gradientes de color (ni en botones, ni en fondos, ni en logos)
+— Más de 3 colores en una misma composición
+— Stock photos de personas de negocios
+— Urgencia artificial o descuentos
+
+Confirma que tienes estas instrucciones antes de comenzar.
+      <button class="copy-btn" onclick="copyPrompt('p1',this)">COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPT 2: Hero Section -->
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <span class="prompt-badge">Prompt 2</span>
+      <h3>Bloque Hero / Primera sección above the fold</h3>
+    </div>
+    <div class="prompt-body">
+      <div class="prompt-use">Cuándo usarlo</div>
+      <p class="prompt-desc">Para diseñar la primera sección visible de cualquier landing. El hero es la única oportunidad de pasar el filtro de 3 segundos del C-Level. El diseño debe comunicar autoridad antes de que empiece a leer.</p>
+      <div class="prompt-box" id="p2">
+Diseña el bloque hero de la landing page para [NOMBRE DEL PRODUCTO: AI Return Test / Libro ReturnAI / AI Return Assessment].
+
+CONTENIDO DEL HERO:
+— Titular H1: [INSERTAR TITULAR — ej: "10 obstáculos humanos están bloqueando el retorno de tu inversión en IA"]
+— Subtítulo (Montserrat Light 300): [INSERTAR SUBTÍTULO — 1-2 líneas, máx. 100 caracteres]
+— CTA principal: Botón teal #2e8b76 con texto "[VERBO PRIMERA PERSONA — ej: Diagnostico mis obstáculos]"
+— Dato de credibilidad (opcional): [INSERTAR MÉTRICA — ej: "14 herramientas propietarias · 120 días · +70% adopción"]
+
+DISEÑO DEL HERO:
+— Fondo: Blanco #ffffff con padding superior mínimo 80px
+— Logo DCA: esquina superior izquierda, mínimo 40px alto, versión positivo (teal + carbón)
+— Titular en Marcellus 44-48px, color carbón #1e2a38, línea 1.25, tracking -0.02em
+— Subtítulo en Montserrat 300, 18px, color #4a5568, máximo 580px de ancho
+— CTA centrado bajo el subtítulo, padding 18px 40px, sin iconos dentro del botón
+— NO usar imagen de fondo, NO usar hero video, NO usar overlay de color
+
+TONO VISUAL:
+— Limpio, editorial, con mucho aire
+— El primer viewport debe "respirar" — menos es más
+— Jerarquía clara: título → subtítulo → CTA → (opcional) dato de credibilidad
+
+Referencia estética: first fold de McKinsey.com — blanco, tipografía dominante, CTA integrado.
+      <button class="copy-btn" onclick="copyPrompt('p2',this)">COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPT 3: Bloque de Datos / Métricas -->
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <span class="prompt-badge">Prompt 3</span>
+      <h3>Bloque de métricas y datos del método</h3>
+    </div>
+    <div class="prompt-body">
+      <div class="prompt-use">Cuándo usarlo</div>
+      <p class="prompt-desc">Para crear la sección donde se presentan los datos cuantitativos del método ReturnAI. Esta sección es crítica para la credibilidad C-Level — los números en display grande con línea dorada son el equivalente visual de un gráfico de McKinsey.</p>
+      <div class="prompt-box" id="p3">
+Diseña un bloque de métricas para la landing de [NOMBRE DEL PRODUCTO].
+
+DATOS A MOSTRAR (todos obligatorios, estos valores son fijos e invariables):
+— 10 obstáculos humanos y organizacionales evaluados
+— 6 sprints del método ReturnAI
+— 14 herramientas propietarias del modelo ADA
+— 70%+ tasa de adopción documentada
+— 120 días para ROI documentado
+
+DISEÑO DEL BLOQUE DE MÉTRICAS:
+— Layout: 5 columnas en desktop, 2-3 en tablet, 1-2 en móvil
+— Fondo de sección: rgba(46,139,118,0.05) — teal muy suave, NO sólido
+— Cada tarjeta de métrica:
+   · Número en Marcellus 52px, color teal #2e8b76
+   · Línea dorada de 3px a la izquierda del número: border-left: 3px solid #a48111
+   · Label en Montserrat SemiBold 600, 12px, carbón #1e2a38, uppercase, letter-spacing 0.1em
+   · Contexto en Montserrat 400, 13px, color #6a7282
+   · Tarjeta con fondo blanco, border-radius 10px, padding 28px 24px
+   · Sombra: 0 2px 8px rgba(30,42,56,0.06)
+— Subtítulo de sección en Montserrat SemiBold 600, 13px, teal #2e8b76, uppercase, centrado
+— Título de sección en Marcellus 30px, carbón, centrado, máx. 500px ancho
+— Padding de sección: 80px arriba y abajo
+
+NOTA: Los datos numéricos no se alteran bajo ninguna circunstancia. Son métricas del método, no estimaciones.
+      <button class="copy-btn" onclick="copyPrompt('p3',this)">COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPT 4: Bloque de CTA Final -->
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <span class="prompt-badge">Prompt 4</span>
+      <h3>Bloque de cierre y CTA final (nivel de conversión)</h3>
+    </div>
+    <div class="prompt-body">
+      <div class="prompt-use">Cuándo usarlo</div>
+      <p class="prompt-desc">El bloque de cierre es donde el C-Level toma la decisión. Debe sentirse como una invitación, no como un cierre de ventas. La diferencia entre McKinsey y una landing genérica está exactamente aquí.</p>
+      <div class="prompt-box" id="p4">
+Diseña el bloque de cierre y CTA final para la landing de [NOMBRE DEL PRODUCTO].
+
+CONTEXTO DEL PRODUCTO:
+[AI Return Test — GRATUITO → CTA: completar el test y dejar contacto]
+[Libro ReturnAI — $19.97 ebook / $29.97 impreso → CTA: comprar y convertirse en lead]
+[AI Return Assessment — $5,000 → CTA: agendar llamada de diagnóstico]
+
+TEXTO DEL BLOQUE:
+— Título de cierre: [INSERTAR TITULAR DE CIERRE — ej: "El primer paso es medir lo que está frenando tu retorno"]
+— Párrafo de apoyo: [INSERTAR 2-3 líneas, sin promesas sin evidencia]
+— CTA principal: "[VERBO PRIMERA PERSONA]" — botón teal grande
+— CTA secundario (opcional): link de texto, color teal, Montserrat SemiBold
+
+DISEÑO DEL BLOQUE:
+— Fondo: rgba(46,139,118,0.12) — banda teal suave, nunca teal sólido
+— Padding: 90px arriba y abajo
+— Contenido centrado, ancho máximo 680px
+— Título en Marcellus 34px, color carbón #1e2a38
+— Párrafo en Montserrat Light 300, 17px, color #4a5568, line-height 1.7
+— Botón CTA: fondo #2e8b76, texto blanco Montserrat Bold 700, padding 18px 48px, border-radius 8px
+— Sin línea dorada en este bloque — el teal tiene la autoridad visual aquí
+— Espacio entre título, párrafo y botón: mínimo 24px entre cada elemento
+
+TONO OBLIGATORIO: Invitación, no presión. Sin "¡Ahora!", sin "¡Última oportunidad!", sin precio tachado.
+      <button class="copy-btn" onclick="copyPrompt('p4',this)">COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPT 5: Sección de entregables / Assessment -->
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <span class="prompt-badge">Prompt 5</span>
+      <h3>Bloque de entregables (específico para el Assessment $5,000)</h3>
+    </div>
+    <div class="prompt-body">
+      <div class="prompt-use">Cuándo usarlo</div>
+      <p class="prompt-desc">Exclusivo para la landing del AI Return Assessment. La línea dorada de acento es el elemento que separa "lista de características" de "entregable de firma premium". Es el mismo patrón visual que usan los proposals de McKinsey.</p>
+      <div class="prompt-box" id="p5">
+Diseña el bloque de entregables del AI Return Assessment para la landing de $5,000.
+
+LOS 3 ENTREGABLES (datos fijos e invariables):
+1. Sesión presencial para hasta 20 líderes de la organización
+2. Reporte integrado de liderazgo con resultados individuales y del equipo
+3. Sesión de presentación con plan de intervención 30-60-90 días
+
+DISEÑO DEL BLOQUE:
+— Título de sección en Marcellus 30px: "Tres entregables. Resultados medibles en 90 días."
+— Layout: 3 tarjetas en columna (no en fila) — formato lista, estilo propuesta de consultoría
+— Cada tarjeta de entregable:
+   · Borde izquierdo de 4px sólido color oro #a48111
+   · Padding interno: 28px 28px 28px 32px (más espacio a la izquierda por el borde)
+   · Número de entregable en Marcellus 48px, color rgba(164,129,17,0.15) (oro muy sutil en fondo)
+   · Nombre del entregable en Marcellus 22px, carbón #1e2a38
+   · Descripción en Montserrat 400, 15px, color #4a5568, máx. 2-3 líneas
+   · Dato clave en Montserrat SemiBold 600, 13px, teal #2e8b76
+   · Tarjeta: fondo blanco, border-radius 0 12px 12px 0, sombra sutil
+— Fondo de sección: blanco #ffffff
+— Padding de sección: 80px arriba y abajo
+
+DATO DE PRECIO: No incluir en este bloque. El precio aparece en el bloque de CTA.
+Datos de capacidad: "hasta 20 líderes" — sí incluir como dato del entregable 1.
+      <button class="copy-btn" onclick="copyPrompt('p5',this)">COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPT 6: Mobile First Check -->
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <span class="prompt-badge">Prompt 6</span>
+      <h3>Auditoría y corrección mobile del diseño</h3>
+    </div>
+    <div class="prompt-body">
+      <div class="prompt-use">Cuándo usarlo</div>
+      <p class="prompt-desc">Después de diseñar la versión desktop. Un CEO revisa desde su iPhone con la misma frecuencia que desde un laptop. La página debe mantener la sensación de "firma premium" en cualquier dispositivo.</p>
+      <div class="prompt-box" id="p6">
+Audita y corrige la versión móvil de la landing de [NOMBRE DEL PRODUCTO] siguiendo el brand book DCA.
+
+CHECKLIST DE AUDITORÍA MOBILE DCA:
+□ Titular H1 en Marcellus: mínimo 28px en móvil (nunca menor)
+□ Cuerpo en Montserrat: mínimo 16px en móvil (nunca menor)
+□ Botones CTA: mínimo 48px de altura, ancho 100% en pantallas < 480px
+□ Padding lateral del contenedor: 20px en móvil
+□ Padding entre secciones: mínimo 48px en móvil (no reducir a menos)
+□ Columnas de métricas: máximo 2 columnas en móvil, 1 columna si los números se ven comprimidos
+□ Tarjetas de entregables: stack vertical, sin layout horizontal en móvil
+□ Logo DCA: mínimo 32px alto en móvil
+□ Línea dorada de acento: mantener visible, no reducir a menos de 3px
+
+CORRECCIONES ESPECÍFICAS PARA PAGEBUILDER.GG:
+— Verificar que el sistema de responsive esté en breakpoints: 1200px (desktop), 768px (tablet), 480px (móvil)
+— En bloques de métricas con 5 columnas: pasar a 2 columnas en móvil con grid-template-columns: 1fr 1fr
+— El whitespace se puede reducir en móvil pero nunca eliminarse
+
+CORRECCIONES PARA GROOVEPAGES (CSS):
+@media (max-width: 768px) {
+  .section { padding: 48px 20px; }
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 24px !important; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .cta-button { width: 100%; min-height: 52px; }
+}
+      <button class="copy-btn" onclick="copyPrompt('p6',this)">COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ══ SECCIÓN 7: CÓDIGO BASE CSS PARA GROOVEPAGES ══════ -->
+<section>
+<div class="container">
+  <div class="section-label">Implementación técnica · Groovepages</div>
+  <h2 class="section-title">Variables CSS y componentes base para Groovepages</h2>
+  <p class="section-intro">Copia este bloque en el campo de CSS personalizado de Groovepages. Define el sistema de diseño DCA completo como variables CSS reutilizables en toda la página. Después de pegarlo, el asistente de IA o tus bloques HTML pueden referenciar estas variables.</p>
+
+  <div class="code-block">
+    <pre><span class="c-comment">/* ═══ SISTEMA DE DISEÑO DCA 2026 · Groovepages Base CSS ═══ */</span>
+
+<span class="c-sel">@import url</span>(<span class="c-hex">'https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&display=swap'</span>);
+
+<span class="c-sel">:root</span> {
+  <span class="c-comment">/* Paleta primaria */</span>
+  <span class="c-prop">--dca-teal</span>: <span class="c-hex">#2e8b76</span>;
+  <span class="c-prop">--dca-gold</span>: <span class="c-hex">#a48111</span>;
+  <span class="c-prop">--dca-white</span>: <span class="c-hex">#ffffff</span>;
+  
+  <span class="c-comment">/* Paleta secundaria */</span>
+  <span class="c-prop">--dca-carbon</span>: <span class="c-hex">#1e2a38</span>;
+  <span class="c-prop">--dca-terracotta</span>: <span class="c-hex">#c2593f</span>;
+  <span class="c-prop">--dca-platinum</span>: <span class="c-hex">#dfe3e1</span>;
+  
+  <span class="c-comment">/* Opacidades funcionales */</span>
+  <span class="c-prop">--dca-teal-bg-subtle</span>: <span class="c-val">rgba(46,139,118,0.05)</span>;
+  <span class="c-prop">--dca-teal-bg-band</span>: <span class="c-val">rgba(46,139,118,0.12)</span>;
+  
+  <span class="c-comment">/* Tipografía */</span>
+  <span class="c-prop">--font-display</span>: <span class="c-hex">'Marcellus'</span>, Georgia, serif;
+  <span class="c-prop">--font-body</span>: <span class="c-hex">'Montserrat'</span>, 'Helvetica Neue', sans-serif;
+  
+  <span class="c-comment">/* Espaciado */</span>
+  <span class="c-prop">--section-padding</span>: <span class="c-val">80px</span>;
+  <span class="c-prop">--text-max-width</span>: <span class="c-val">720px</span>;
+  <span class="c-prop">--layout-max-width</span>: <span class="c-val">1100px</span>;
+}
+
+<span class="c-comment">/* ── Tipografía base ─────────────────────────────── */</span>
+<span class="c-sel">body</span> {
+  <span class="c-prop">font-family</span>: <span class="c-val">var(--font-body)</span>;
+  <span class="c-prop">font-size</span>: <span class="c-val">17px</span>;
+  <span class="c-prop">line-height</span>: <span class="c-val">1.7</span>;
+  <span class="c-prop">color</span>: <span class="c-val">var(--dca-carbon)</span>;
+}
+
+<span class="c-sel">h1, h2</span> {
+  <span class="c-prop">font-family</span>: <span class="c-val">var(--font-display)</span>;
+  <span class="c-prop">line-height</span>: <span class="c-val">1.3</span>;
+  <span class="c-prop">letter-spacing</span>: <span class="c-val">-0.02em</span>;
+  <span class="c-prop">color</span>: <span class="c-val">var(--dca-carbon)</span>;
+}
+<span class="c-sel">h1</span> { <span class="c-prop">font-size</span>: <span class="c-val">clamp(28px, 4vw, 48px)</span>; }
+<span class="c-sel">h2</span> { <span class="c-prop">font-size</span>: <span class="c-val">clamp(24px, 3vw, 34px)</span>; }
+<span class="c-sel">h3</span> { <span class="c-prop">font-family</span>: <span class="c-val">var(--font-body)</span>; <span class="c-prop">font-weight</span>: <span class="c-val">600</span>; <span class="c-prop">font-size</span>: <span class="c-val">20px</span>; }
+
+<span class="c-comment">/* ── Secciones ───────────────────────────────────── */</span>
+<span class="c-sel">.dca-section</span> {
+  <span class="c-prop">padding</span>: <span class="c-val">var(--section-padding)</span> 40px;
+  <span class="c-prop">max-width</span>: <span class="c-val">var(--layout-max-width)</span>;
+  <span class="c-prop">margin</span>: <span class="c-val">0 auto</span>;
+}
+<span class="c-sel">.dca-text-block</span> { <span class="c-prop">max-width</span>: <span class="c-val">var(--text-max-width)</span>; }
+
+<span class="c-comment">/* ── Botón CTA principal ─────────────────────────── */</span>
+<span class="c-sel">.dca-cta</span> {
+  <span class="c-prop">display</span>: <span class="c-val">inline-flex</span>;
+  <span class="c-prop">align-items</span>: <span class="c-val">center</span>;
+  <span class="c-prop">background</span>: <span class="c-val">var(--dca-teal)</span>;
+  <span class="c-prop">color</span>: <span class="c-val">white</span>;
+  <span class="c-prop">font-family</span>: <span class="c-val">var(--font-body)</span>;
+  <span class="c-prop">font-weight</span>: <span class="c-val">700</span>;
+  <span class="c-prop">font-size</span>: <span class="c-val">15px</span>;
+  <span class="c-prop">padding</span>: <span class="c-val">16px 36px</span>;
+  <span class="c-prop">border-radius</span>: <span class="c-val">8px</span>;
+  <span class="c-prop">border</span>: <span class="c-val">none</span>;
+  <span class="c-prop">min-height</span>: <span class="c-val">52px</span>;
+  <span class="c-prop">cursor</span>: <span class="c-val">pointer</span>;
+  <span class="c-prop">transition</span>: <span class="c-val">background 0.2s ease</span>;
+  <span class="c-prop">text-decoration</span>: <span class="c-val">none</span>;
+}
+<span class="c-sel">.dca-cta:hover</span> { <span class="c-prop">background</span>: <span class="c-val">#247060</span>; }
+
+<span class="c-comment">/* ── Tarjeta base ────────────────────────────────── */</span>
+<span class="c-sel">.dca-card</span> {
+  <span class="c-prop">background</span>: <span class="c-val">white</span>;
+  <span class="c-prop">border</span>: <span class="c-val">1px solid var(--dca-platinum)</span>;
+  <span class="c-prop">border-radius</span>: <span class="c-val">10px</span>;
+  <span class="c-prop">padding</span>: <span class="c-val">32px 28px</span>;
+  <span class="c-prop">box-shadow</span>: <span class="c-val">0 2px 8px rgba(30,42,56,0.06)</span>;
+}
+
+<span class="c-comment">/* ── Bloque de acento dorado ─────────────────────── */</span>
+<span class="c-sel">.dca-gold-accent</span> {
+  <span class="c-prop">border-left</span>: <span class="c-val">4px solid var(--dca-gold)</span>;
+  <span class="c-prop">padding</span>: <span class="c-val">20px 24px 20px 28px</span>;
+  <span class="c-prop">border-radius</span>: <span class="c-val">0 10px 10px 0</span>;
+}
+
+<span class="c-comment">/* ── Label de sección ────────────────────────────── */</span>
+<span class="c-sel">.dca-section-label</span> {
+  <span class="c-prop">font-size</span>: <span class="c-val">11px</span>;
+  <span class="c-prop">font-weight</span>: <span class="c-val">700</span>;
+  <span class="c-prop">letter-spacing</span>: <span class="c-val">0.14em</span>;
+  <span class="c-prop">text-transform</span>: <span class="c-val">uppercase</span>;
+  <span class="c-prop">color</span>: <span class="c-val">var(--dca-teal)</span>;
+  <span class="c-prop">margin-bottom</span>: <span class="c-val">10px</span>;
+}
+
+<span class="c-comment">/* ── Grid de métricas ────────────────────────────── */</span>
+<span class="c-sel">.dca-metrics</span> {
+  <span class="c-prop">display</span>: <span class="c-val">grid</span>;
+  <span class="c-prop">grid-template-columns</span>: <span class="c-val">repeat(auto-fit, minmax(160px, 1fr))</span>;
+  <span class="c-prop">gap</span>: <span class="c-val">20px</span>;
+}
+<span class="c-sel">.dca-metric-num</span> {
+  <span class="c-prop">font-family</span>: <span class="c-val">var(--font-display)</span>;
+  <span class="c-prop">font-size</span>: <span class="c-val">48px</span>;
+  <span class="c-prop">color</span>: <span class="c-val">var(--dca-teal)</span>;
+  <span class="c-prop">border-left</span>: <span class="c-val">3px solid var(--dca-gold)</span>;
+  <span class="c-prop">padding-left</span>: <span class="c-val">14px</span>;
+  <span class="c-prop">line-height</span>: <span class="c-val">1</span>;
+}
+
+<span class="c-comment">/* ── Mobile responsive ───────────────────────────── */</span>
+<span class="c-sel">@media (max-width: 768px)</span> {
+  <span class="c-sel">:root</span> { <span class="c-prop">--section-padding</span>: <span class="c-val">48px</span>; }
+  <span class="c-sel">.dca-section</span> { <span class="c-prop">padding</span>: <span class="c-val">48px 20px</span>; }
+  <span class="c-sel">.dca-metrics</span> { <span class="c-prop">grid-template-columns</span>: <span class="c-val">1fr 1fr</span>; }
+  <span class="c-sel">.dca-cta</span> { <span class="c-prop">width</span>: <span class="c-val">100%</span>; <span class="c-prop">justify-content</span>: <span class="c-val">center</span>; }
+}</pre>
+  </div>
+
+  <div class="accent-block">
+    <p>Para PageBuilder.gg: copia las clases CSS en "Estilos personalizados" y luego asigna las clases a cada bloque en el panel de propiedades. El asistente de IA de PageBuilder puede leer estas variables si le das el Prompt 1 primero.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══ SECCIÓN 8: CHECKLIST FINAL ════════════════════════ -->
+<section style="background:#f8f8f6;">
+<div class="container">
+  <div class="section-label">Control de calidad</div>
+  <h2 class="section-title">Checklist de auditoría DCA — antes de publicar</h2>
+  <p class="section-intro">Una página que pasa este checklist puede competir visualmente con los materiales de McKinsey y Deloitte. Si algún item falla, corrige antes de publicar — el C-Level lo notará aunque no sepa articularlo.</p>
+
+  <h3 style="margin-bottom:16px;font-size:16px;color:var(--dca-teal);">Tipografía</h3>
+  <ul class="checklist">
+    <li>Titulares H1/H2 en Marcellus Regular (400)</li>
+    <li>Cuerpo en Montserrat con jerarquía de pesos (300-700)</li>
+    <li>Marcellus nunca menor a 24px</li>
+    <li>Montserrat body nunca menor a 16px</li>
+    <li>Line-height: 1.7 body · 1.3 títulos</li>
+    <li>Ninguna otra familia tipográfica presente</li>
+  </ul>
+
+  <h3 style="margin:28px 0 16px;font-size:16px;color:var(--dca-teal);">Color y paleta</h3>
+  <ul class="checklist">
+    <li>Solo los 6 colores del brand book DCA</li>
+    <li>Ratio aproximado: 70% blanco / 20% teal / 10% oro</li>
+    <li>Oro siempre sólido — nunca en opacidad reducida</li>
+    <li>Texto de cuerpo en Carbón #1e2a38</li>
+    <li>Máximo 3 colores por composición visible</li>
+    <li>Terracota solo para señales de alerta</li>
+  </ul>
+
+  <h3 style="margin:28px 0 16px;font-size:16px;color:var(--dca-teal);">Espaciado y layout</h3>
+  <ul class="checklist">
+    <li>Padding entre secciones ≥ 80px desktop / 48px móvil</li>
+    <li>Contenedor de texto ≤ 720px ancho</li>
+    <li>Whitespace ~40% de la superficie total</li>
+    <li>Primer viewport respira — sin overcrowding</li>
+  </ul>
+
+  <h3 style="margin:28px 0 16px;font-size:16px;color:var(--dca-teal);">Datos y métricas</h3>
+  <ul class="checklist">
+    <li>10 obstáculos · 6 sprints · 14 herramientas — valores exactos</li>
+    <li>+70% adopción · 120 días ROI — en todas las páginas iguales</li>
+    <li>Precios: $19.97 ebook / $29.97 impreso / $5,000 Assessment</li>
+    <li>Números en Marcellus con línea dorada a la izquierda</li>
+  </ul>
+
+  <h3 style="margin:28px 0 16px;font-size:16px;color:var(--dca-terracotta);">Anti-patrones (cero tolerancia)</h3>
+  <ul class="checklist">
+    <li>Cero pop-ups en la página</li>
+    <li>Cero countdown timers</li>
+    <li>Cero "queda 1 cupo" o urgencia artificial</li>
+    <li>Cero stock photos de personas de negocios</li>
+    <li>Cero gradientes de color</li>
+    <li>Cero chatbot flotante</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- end white wrapper -->
+
+<div class="doc-footer">
+  <strong>Digital Change Advisors · Sistema ReturnAI</strong> — Brand Book DCA 2026 v1.0 · Documento de uso interno · Producido con el sistema de SKILLs de Landing Pages
+</div>
+
+<script>
+function copyPrompt(id, btn) {
+  const el = document.getElementById(id);
+  const btn_el = el.querySelector('.copy-btn');
+  let text = el.innerText.replace('COPIAR', '').replace('COPIADO', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'COPIADO';
+    btn.style.background = '#a48111';
+    setTimeout(() => {
+      btn.textContent = 'COPIAR';
+      btn.style.background = '#2e8b76';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
