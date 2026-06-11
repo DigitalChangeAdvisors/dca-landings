@@ -168,15 +168,16 @@ header {
   margin: 0 auto;
   padding: 0 24px;
 }
-.logo {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--dca-carbon);
-  letter-spacing: -0.01em;
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
 }
-.logo span {
-  color: var(--dca-teal);
+.logo-link img {
+  display: block;
+  height: 32px;
+  width: auto;
 }
 .header-cta {
   font-family: var(--font-body);
@@ -956,11 +957,10 @@ footer {
   gap: 20px;
   text-align: center;
 }
-.footer-logo {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--dca-white);
+.footer-logo-img {
+  display: block;
+  height: 44px;
+  width: auto;
 }
 .footer-tagline-sub {
   font-family: var(--font-body);
