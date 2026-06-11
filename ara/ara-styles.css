@@ -1093,7 +1093,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 40px;
-  margin-bottom: 56px;
+  margin-bottom: 24px;
 }
 .hero-icon {
   flex-shrink: 0;
@@ -1121,7 +1121,7 @@ h2.hero-title {
   color: var(--dca-carbon);
   text-align: center;
   line-height: 1.35;
-  margin: 0 auto 48px;
+  margin: 0 auto 24px;
   max-width: 900px;
 }
 h1.hero-title {
@@ -1130,7 +1130,7 @@ h1.hero-title {
   color: var(--dca-carbon);
   text-align: center;
   line-height: 1.3;
-  margin: 0 auto 48px;
+  margin: 0 auto 24px;
   max-width: 900px;
 }
 h1.hero-title .line,
@@ -1235,6 +1235,10 @@ h2.hero-title .line { display: block; }
   transition: clip-path 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .js-ready .ara-reveal.in { clip-path: inset(0 0 0% 0); }
+/* El titular del hero es above-the-fold: nunca debe depender de JS
+   para ser visible — sin esta exención queda clipped (invisible)
+   si el observer no dispara, ocupando su altura como espacio vacío */
+.js-ready .hero-title.ara-reveal { clip-path: none; transition: none; }
 
 /* ─── A2 · Label fade-up — precede 120ms al H2 ──────────────── */
 .js-ready .ara-reveal--label {
