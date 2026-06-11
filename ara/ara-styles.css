@@ -891,6 +891,7 @@ header {
   color: var(--dca-white);
   margin-bottom: 12px;
 }
+.conectores-header h2 .line { display: block; }
 .conectores-header p {
   font-size: 15px;
   color: rgba(255,255,255,0.72);
