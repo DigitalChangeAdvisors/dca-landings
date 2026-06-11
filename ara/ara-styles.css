@@ -157,7 +157,7 @@ header {
   top: 0;
   z-index: 100;
   background: var(--dca-white);
-  border-bottom: 1px solid rgba(46,139,118,0.18);
+  box-shadow: 0 1px 0 rgba(46,139,118,0.22), 0 3px 12px rgba(46,139,118,0.08);
 }
 .header-inner {
   display: flex;
@@ -197,7 +197,7 @@ header {
 /* ─── BLOQUE 1 · HERO ────────────────────────────────────── */
 #hero {
   padding: 60px 0 72px;
-  background: var(--dca-white);
+  background: rgba(46,139,118,0.05);
 }
 .hero-grid {
   display: grid;
