@@ -911,6 +911,13 @@ header {
   flex-direction: column;
   gap: 14px;
 }
+.conector-card--primary {
+  background: var(--dca-white);
+  border-left: 4px solid var(--dca-gold);
+}
+.conector-card--secondary {
+  background: var(--dca-platinum);
+}
 .conector-sublabel {
   font-family: var(--font-body);
   font-weight: 600;
