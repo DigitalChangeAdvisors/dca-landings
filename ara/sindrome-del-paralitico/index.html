@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="../../images/favicon.png" />
-<link rel="apple-touch-icon" href="../../images/favicon.png" />
+<link rel="icon" type="image/png" href="../images/favicon.png" />
+<link rel="apple-touch-icon" href="../images/favicon.png" />
 <title>AI Return Assessment · Digital Change Advisors</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../ara-styles.css">
+<script>document.documentElement.classList.add('js-ready')</script>
 </head>
 <body>
 
@@ -18,8 +19,10 @@
 ════════════════════════════════════════════════════════ -->
 <header>
   <div class="header-inner">
-    <div class="logo">Digital Change <span>Advisors</span></div>
-    <a href="https://tidycal.com/pwgdigital/returnai" target="_blank" rel="noopener" class="header-cta">Agendar sesión de análisis</a>
+    <a href="https://www.digitalchangeadvisors.com" class="logo-link">
+      <img src="../images/dca-nav.svg" alt="Digital Change Advisors" width="160" height="32">
+    </a>
+    <a href="https://tidycal.com/pwgdigital/returnai" target="_blank" rel="noopener" class="header-cta">Agendar sesión de diagnóstico</a>
   </div>
 </header>
 
@@ -40,7 +43,7 @@
 
     <!-- FILA 2 · H2: título descriptivo (ancho completo · centrado) -->
     <span class="hero-overtitle hero-overtitle--centered">AI Return Assessment · $5,000</span>
-    <h2 class="hero-title">Su organización opera bajo el Síndrome del Paralítico: estrategia clara, liderazgo presente, tecnología disponible —y parálisis interna.</h2>
+    <h2 class="hero-title ara-reveal">Su organización opera bajo el Síndrome del Paralítico: estrategia clara, liderazgo presente, tecnología disponible —y parálisis interna.</h2>
 
     <!-- VIDEO PLACEHOLDER (video único por landing — pendiente de producción) -->
     <div class="hero-video-placeholder">
@@ -59,7 +62,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════════
-     BLOQUE 1.5 · CONTEXTO — ARQUETIPO
+     BLOQUE 1.5 · CONTEXTO — LO QUE LOS OBSTÁCULOS CUESTAN
 ════════════════════════════════════════════════════════ -->
 <section id="arquetipo-contexto">
   <div class="container">
@@ -76,7 +79,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     BLOQUE 1.75 · CÓMO FUNCIONA — COPIA Y MÉTRICAS
+     BLOQUE 1.75 · CÓMO FUNCIONA — METODOLOGÍA Y MÉTRICAS
 ════════════════════════════════════════════════════════ -->
 <section id="hero-context" class="section-pad">
   <div class="container">
@@ -91,22 +94,22 @@
       </div>
       <div class="hero-visual">
         <div class="hero-metric">
-          <div class="hero-metric-num">10</div>
+          <div class="hero-metric-num" data-count="10" data-delay="0">10</div>
           <div class="hero-metric-label">obstáculos humanos y organizacionales medidos con tus líderes</div>
         </div>
         <hr class="hero-metric-divider">
         <div class="hero-metric">
-          <div class="hero-metric-num">20</div>
+          <div class="hero-metric-num" data-count="20" data-delay="180">20</div>
           <div class="hero-metric-label">líderes participantes en la sesión presencial de diagnóstico</div>
         </div>
         <hr class="hero-metric-divider">
         <div class="hero-metric">
-          <div class="hero-metric-num">90</div>
+          <div class="hero-metric-num" data-count="90" data-delay="360">90</div>
           <div class="hero-metric-label">días del plan de intervención con responsables y métricas de seguimiento</div>
         </div>
         <hr class="hero-metric-divider">
         <div class="hero-metric">
-          <div class="hero-metric-num">3–4</div>
+          <div class="hero-metric-num" data-count="3" data-delay="540">3</div>
           <div class="hero-metric-label">semanas de proceso total, desde la llamada inicial a la entrega del plan</div>
         </div>
       </div>
@@ -123,29 +126,33 @@
   <div class="container">
 
     <div class="entregables-intro">
-      <span class="section-label">Lo que obtienes</span>
-      <h2>Tres entregables, descritos con precisión operativa: la sesión presencial, el reporte integrado y el plan de intervención 30-60-90 días.</h2>
+      <span class="section-label ara-reveal--label">Lo que obtienes</span>
+      <h2 class="ara-reveal"><span class="line">Tres entregables, descritos con precisión operativa:</span><span class="line">la sesión presencial, el reporte ejecutivo y la</span><span class="line">ruta de captura de valor.</span></h2>
       <p style="margin-top:16px;">Cada entregable está descrito para que tu equipo de dirección pueda visualizarlo, calcular su valor y planificar su uso desde el primer día post-Assessment.</p>
     </div>
 
     <div class="entregables-grid">
 
-      <div class="entregable-card">
+      <div class="entregable-card ara-reveal--card">
         <div class="entregable-label">Entregable 1</div>
-        <h3>Sesión presencial · medio día · hasta 20 líderes</h3>
-        <p>Aplicación facilitada de los instrumentos del Modelo ARIA con tu equipo de liderazgo. Los participantes producen evaluaciones individuales sobre los 10 obstáculos sistémicos presentes en tu organización. La sesión identifica patrones de adopción que tu equipo no había articulado con claridad.</p>
+        <h3>Aplicación presencial · 1 hora · hasta 20 líderes</h3>
+        <p>Aplicación facilitada de los instrumentos del Modelo ARIA con tu equipo de liderazgo.</p>
+        <p>Los participantes producen evaluaciones individuales sobre los 10 obstáculos sistémicos presentes en tu organización.</p>
+        <p>La sesión identifica los patrones de baja captura de valor que tu equipo no había articulado con claridad.</p>
       </div>
 
-      <div class="entregable-card">
+      <div class="entregable-card ara-reveal--card">
         <div class="entregable-label">Entregable 2</div>
-        <h3>Reporte integrado de liderazgo · entrega digital y física</h3>
+        <h3>Reporte ejecutivo · entrega digital</h3>
         <p>Consolida la visión de tus 20 líderes sobre los 10 obstáculos medidos, referenciada contra el benchmark de tu sector. Incluye el Índice de Urgencia Global (IUG), la cuantificación de pérdida de valor por adopción incompleta, y las prioridades de intervención. Es el reporte que tu CFO necesita para evaluar exposición y tu CTO necesita para calibrar la siguiente decisión de inversión.</p>
       </div>
 
-      <div class="entregable-card">
+      <div class="entregable-card ara-reveal--card">
         <div class="entregable-label">Entregable 3</div>
-        <h3>Sesión de presentación · plan de intervención a 30, 60 y 90 días</h3>
-        <p>Tres horizontes operativos con estrategias priorizadas, responsables sugeridos, métricas de seguimiento y timeline de captura de valor. Tu equipo sale de la sesión con un plan ejecutable, no con un reporte de recomendaciones. Es el momento donde el diagnóstico se convierte en decisiones.</p>
+        <h3>Aplicación presencial · 1 hora · Ruta de captura de valor a 90 días</h3>
+        <p>Horizontes operativos a 30, 60 y 90 días con estrategias priorizadas, responsables, métricas y timeline de captura de valor.</p>
+        <p>Tu equipo sale de la sesión con un plan ejecutable, no con un reporte de recomendaciones.</p>
+        <p>Es el momento donde el diagnóstico se convierte en decisiones.</p>
       </div>
 
     </div>
@@ -162,55 +169,49 @@
   <div class="container">
 
     <div class="testimoniales-header">
-      <span class="section-label">Organizaciones que lo aplicaron</span>
-      <h2>Lo que dicen quienes pasaron por el Assessment</h2>
+      <span class="section-label ara-reveal--label">Organizaciones que lo aplicaron</span>
+      <h2 class="ara-reveal">Lo que dicen quienes pasaron por el Assessment</h2>
       <p>Tres industrias distintas. Un diagnóstico específico para cada una.</p>
     </div>
 
     <div class="testimoniales-grid">
 
       <!-- Testimonial 1: Rubén Darío Cañas — Subocol -->
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"El AI Return Assessment nos entregó un número que no teníamos: un IUG de 48.4 sobre 100. Eso le puso nombre a lo que intuíamos — el 35% de la inversión en IA no estaba produciendo retorno por obstáculos que ya existían en la organización antes de la tecnología. Con ese dato, tuvimos la conversación que necesitábamos tener con la junta."</p>
+      <div class="testimonial-card ara-reveal--card">
+        <p class="testimonial-quote">"El AI Return Assessment nos entregó un número que no teníamos: un IUG de 48.4 sobre 100. Eso le puso nombre a lo que intuíamos — el 35% de la inversión en IA no estaba produciendo retorno por obstáculos que ya existían en la organización antes de la tecnología.<br><br>Con ese dato, tuvimos la conversación que necesitábamos tener con la junta."</p>
         <div class="testimonial-author">
           <div class="testimonial-photo">
-            <div class="testimonial-photo-placeholder">
-              <span class="testimonial-photo-initials">RC</span>
-            </div>
+            <img src="../images/art-photo-ruben-canas.png" alt="Rubén Darío Cañas A." loading="lazy">
           </div>
           <div class="testimonial-meta">
             <div class="testimonial-name">Rubén Darío Cañas A.</div>
             <div class="testimonial-role">CEO</div>
-            <div class="testimonial-org">Subocol</div>
+            <div class="testimonial-org">Subocol · Grupo SURA</div>
           </div>
         </div>
       </div>
 
       <!-- Testimonial 2: Diego Parra — SUMMA / Grupo Argos -->
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"La sesión presencial con nuestros líderes fue distinta a cualquier proceso de diagnóstico que habíamos hecho antes. Los instrumentos del Modelo ARIA pusieron sobre la mesa la realidad de la organización — no lo que cada líder pensaba que los demás querían escuchar. El reporte que recibimos describía el 100% de nuestra realidad, y las prioridades de intervención eran accionables desde el primer día."</p>
+      <div class="testimonial-card ara-reveal--card">
+        <p class="testimonial-quote">"La sesión presencial con nuestros líderes fue distinta a cualquier proceso de diagnóstico que habíamos hecho antes. Los instrumentos del Modelo ARIA pusieron sobre la mesa la realidad de la organización — no lo que cada líder pensaba que los demás querían escuchar.<br><br>El reporte que recibimos describía el 100% de nuestra realidad, y las prioridades de intervención eran accionables desde el primer día."</p>
         <div class="testimonial-author">
           <div class="testimonial-photo">
-            <div class="testimonial-photo-placeholder">
-              <span class="testimonial-photo-initials">DP</span>
-            </div>
+            <img src="../images/art-photo-diego-parra.png" alt="Diego Parra" loading="lazy">
           </div>
           <div class="testimonial-meta">
             <div class="testimonial-name">Diego Parra</div>
-            <div class="testimonial-role">Gerente de TI</div>
-            <div class="testimonial-org">SUMMA — Grupo Argos</div>
+            <div class="testimonial-role">CIO</div>
+            <div class="testimonial-org">SUMMA · Grupo Argos</div>
           </div>
         </div>
       </div>
 
       <!-- Testimonial 3: Julián Hurtado — Susuerte -->
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"Lo que me sorprendió fue la precisión. César no llegó con un marco genérico de 'gestión del cambio'. El Assessment diagnosticó los obstáculos específicos de nuestra operación, y el plan de intervención tenía los nombres correctos, los plazos correctos y las métricas que nosotros ya usábamos para medir el negocio. Eso no se improvisa."</p>
+      <div class="testimonial-card ara-reveal--card">
+        <p class="testimonial-quote">"Lo que me sorprendió fue la precisión. César no llegó con un marco genérico de 'gestión del cambio'.<br><br>El Assessment diagnosticó los obstáculos específicos de nuestra operación, y el plan de intervención tenía los nombres correctos, los plazos correctos y las métricas que nosotros ya usábamos para medir el negocio. Eso no se improvisa."</p>
         <div class="testimonial-author">
           <div class="testimonial-photo">
-            <div class="testimonial-photo-placeholder">
-              <span class="testimonial-photo-initials">JH</span>
-            </div>
+            <img src="../images/art-photo-julian-hurtado.png" alt="Julián Hurtado" loading="lazy">
           </div>
           <div class="testimonial-meta">
             <div class="testimonial-name">Julián Hurtado</div>
@@ -233,9 +234,9 @@
   <div class="container">
 
     <div class="proceso-header">
-      <span class="section-label">Cómo opera el Assessment</span>
-      <h2>Cómo opera el AI Return Assessment, de la llamada inicial a la entrega del plan 30-60-90.</h2>
-      <p style="margin-top:16px;">Cada etapa con duración, qué ocurre operativamente y qué compromiso de tu equipo se requiere. El Assessment es un proceso predecible de 3 a 4 semanas, no un evento puntual.</p>
+      <span class="section-label ara-reveal--label">Cómo opera el Assessment</span>
+      <h2 class="ara-reveal">Cómo opera el AI Return Assessment, de la llamada inicial<br>a la entrega de la ruta de captura de valor.</h2>
+      <p style="margin-top:16px;">El Assessment es un proceso ágil de 3 semanas. Conoce cada etapa con: duración, qué ocurre y qué compromiso de tu equipo se requiere.</p>
     </div>
 
     <div class="proceso-timeline">
@@ -245,34 +246,34 @@
         <div class="step-content">
           <div class="step-label">Llamada de diagnóstico</div>
           <div class="step-duration">30 minutos · sin costo</div>
-          <p class="step-desc">Conversación con un consultor senior de DCA. Determinamos juntos si el Assessment es el paso correcto para tu organización. Si concluimos que no lo es, te lo decimos directamente.</p>
+          <p class="step-desc">Diálogo con un consultor senior de DCA para determinar si el Assessment es el paso correcto para tu empresa. Si concluimos que no lo es, te lo decimos.</p>
         </div>
       </div>
 
       <div class="proceso-step">
         <div class="step-circle">2</div>
         <div class="step-content">
-          <div class="step-label">Preparación customizada</div>
-          <div class="step-duration">1-2 semanas</div>
-          <p class="step-desc">Adaptamos los instrumentos del Modelo ARIA al contexto de tu sector, escala y momento de adopción de IA. Calibración previa que la sesión presencial aprovecha desde el primer minuto.</p>
+          <div class="step-label">Personalización del test</div>
+          <div class="step-duration">Semana 1</div>
+          <p class="step-desc">Adaptamos el AI Return Assessment a tu contexto con los demográficos de tu interés. Convocatoria a la sesión presencial de los líderes invitados a la valoración.</p>
         </div>
       </div>
 
       <div class="proceso-step">
         <div class="step-circle">3</div>
         <div class="step-content">
-          <div class="step-label">Sesión presencial</div>
-          <div class="step-duration">Medio día · hasta 20 líderes</div>
-          <p class="step-desc">Aplicación facilitada de los instrumentos con tu equipo de liderazgo. Tus líderes producen evaluaciones individuales y patrones colectivos. La sesión se programa en tu sede o en un espacio que tu organización defina.</p>
+          <div class="step-label">Aplicación presencial</div>
+          <div class="step-duration">Semana 2 · 1 hora</div>
+          <p class="step-desc">Aplicación facilitada del assessment con tu equipo de líderes. Solución de inquietudes en vivo. La sesión es presencial virtual a través de video conferencia.</p>
         </div>
       </div>
 
       <div class="proceso-step">
         <div class="step-circle">4</div>
         <div class="step-content">
-          <div class="step-label">Análisis y reporte integrado</div>
-          <div class="step-duration">1-2 semanas</div>
-          <p class="step-desc">Procesamos la información cualitativa y cuantitativa con las 14 herramientas propietarias del Modelo ARIA. Construimos el reporte con el referenciamiento sectorial y las prioridades de intervención. Entrega digital y física.</p>
+          <div class="step-label">Análisis y reporte ejecutivo</div>
+          <div class="step-duration">Semana 3</div>
+          <p class="step-desc">Se procesan los datos y se genera el reporte del Assessment con el referenciamiento sectorial y las prioridades de intervención.</p>
         </div>
       </div>
 
@@ -280,8 +281,8 @@
         <div class="step-circle">5</div>
         <div class="step-content">
           <div class="step-label">Sesión de presentación</div>
-          <div class="step-duration">Medio día</div>
-          <p class="step-desc">Entrega presencial del reporte y del plan de intervención 30-60-90 días, con responsables sugeridos y métricas de seguimiento. Tu equipo sale con la siguiente acción definida y cronometrada.</p>
+          <div class="step-duration">Semana 3 · 1 hora</div>
+          <p class="step-desc">Entrega presencial del reporte de resultados con: el IUG, el Mapa de calor, el Impacto financiero y la Ruta de captura de valor. Tu equipo sale con acciones definidas.</p>
         </div>
       </div>
 
@@ -289,7 +290,7 @@
 
     <!-- Línea de diferenciación ARIA / Solución ReturnAI — OBLIGATORIA -->
     <div class="proceso-aria-note">
-      <p>El Assessment aplica el Modelo ARIA para diagnosticar los obstáculos específicos de tu organización. Cuando los resultados lo justifican, la Solución ReturnAI —6 sprints, 14 herramientas propietarias, 120 días— convierte ese diagnóstico en retorno documentado.</p>
+      <p>El Assessment diagnostica los obstáculos específicos de tu organización. Cuando los resultados lo justifican, la Solución ReturnAI convierte ese diagnóstico en retorno documentado en el P&L — en 120 días.</p>
     </div>
 
   </div>
@@ -304,14 +305,14 @@
   <div class="container">
 
     <div class="para-quien-header">
-      <span class="section-label">Calificación previa</span>
-      <h2>Este Assessment está diseñado para organizaciones que reconocen el Síndrome del Paralítico y entienden que la solución no es más capacitación.</h2>
+      <span class="section-label ara-reveal--label">Calificación previa</span>
+      <h2 ara-reveal>Este Assessment está diseñado para organizaciones que reconocen el Síndrome del Paralítico y entienden que la solución no es más capacitación.</h2>
       <p style="margin-top:16px;">El Assessment no aplica a todas las organizaciones. Esta sección te permite calificarte antes de invertir 30 minutos en la llamada de diagnóstico.</p>
     </div>
 
     <div class="para-quien-grid">
 
-      <div class="para-quien-col yes">
+      <div class="para-quien-col yes ara-reveal--left">
         <div class="para-quien-col-title">
           <span class="check-icon">✓</span>
           Es para tu organización si…
@@ -333,7 +334,7 @@
         </ul>
       </div>
 
-      <div class="para-quien-col no">
+      <div class="para-quien-col no ara-reveal--right">
         <div class="para-quien-col-title">
           <span class="x-icon">✕</span>
           No es el momento correcto si…
@@ -370,8 +371,8 @@
   <div class="container">
 
     <div class="anclaje-header">
-      <span class="section-label">La ecuación financiera</span>
-      <h2>Cuánto cuesta seguir invirtiendo en capacitación sin desmantelar el Síndrome del Paralítico.</h2>
+      <span class="section-label ara-reveal--label">La ecuación financiera</span>
+      <h2 ara-reveal>Cuánto cuesta seguir invirtiendo en capacitación sin desmantelar el Síndrome del Paralítico.</h2>
     </div>
 
     <div class="metrics-row">
@@ -380,7 +381,7 @@
         <div class="metric-sublabel">inversión anual típica en IA<br>(licencias, integración, headcount)</div>
       </div>
       <div class="metric-item">
-        <div class="metric-value terracota">35%</div>
+        <div class="metric-value terracota" id="ara-count-pct" data-count="35">35%</div>
         <div class="metric-sublabel">pérdida de captura de valor<br>documentada en Subocol</div>
       </div>
       <div class="metric-item">
@@ -405,11 +406,15 @@
     <div class="cta-principal-inner">
 
       <span class="cta-section-label">Próximo paso</span>
-      <h2>Una conversación de 30 minutos define si el Assessment es el paso correcto para tu organización — y si no lo es, te lo decimos directamente.</h2>
+      <h2 class="ara-reveal">
+        <span class="line">Una conversación de 30 minutos define si el Assessment</span>
+        <span class="line">es el paso correcto para tu organización.</span>
+        <span class="line">Si no lo es, te lo decimos.</span>
+      </h2>
       <p class="cta-principal-copy">Sin pitch. Sin presión de contratar. La llamada tiene un solo objetivo: determinar si existe un caso de negocio para el diagnóstico. Tu tiempo es el único costo de esa conversación.</p>
 
       <div class="cta-wrap centered">
-        <a href="https://tidycal.com/pwgdigital/returnai" target="_blank" rel="noopener" class="btn-gold">Agendar mi sesión de análisis de resultados</a>
+        <a href="https://tidycal.com/pwgdigital/returnai" target="_blank" rel="noopener" class="btn-gold">Agendar mi sesión de diagnóstico</a>
         <span class="cta-support on-dark">30 minutos con un especialista en rentabilización de la IA · Sin costo · Sin compromiso de contratar</span>
       </div>
 
@@ -418,73 +423,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════
-     BLOQUE 8 · CREDIBILIDAD DEL EJECUTOR (César Lozano)
-════════════════════════════════════════════════════════ -->
-<section id="credibilidad" class="section-pad">
-  <div class="container">
-
-    <div class="credibilidad-grid">
-
-      <div class="credibilidad-photo">
-        <div class="credibilidad-photo-placeholder">
-          <span class="credibilidad-photo-initials">CL</span>
-        </div>
-      </div>
-
-      <div class="credibilidad-copy">
-        <span class="section-label">Quién facilita el Assessment</span>
-        <h2>Quién facilita tu AI Return Assessment: César Lozano, autor del Modelo ARIA y de las 14 herramientas propietarias que estructuran los 6 sprints.</h2>
-        <p>César Lozano dirige Digital Change Advisors. Ha acompañado a más de 70 organizaciones en 17 países en la documentación del retorno sobre sus inversiones en IA. El Assessment lo facilita personalmente — no a través de consultores júnior con un script, sino con el autor del método que va a diagnosticar a tu equipo.</p>
-
-        <ul class="credenciales-list">
-          <li>
-            <span class="cred-dot"></span>
-            Autor del Modelo ARIA: 3 instrumentos de diagnóstico conductual + 7 frameworks ágiles + 4 herramientas de gestión — 14 herramientas propietarias en total
-          </li>
-          <li>
-            <span class="cred-dot"></span>
-            70+ organizaciones acompañadas en América Latina, Estados Unidos y Europa
-          </li>
-          <li>
-            <span class="cred-dot"></span>
-            250+ líderes en la Comunidad LARIA · 17 países
-          </li>
-          <li>
-            <span class="cred-dot"></span>
-            Autor de la Novela ReturnAI — el marco metodológico del Assessment en formato de lectura ejecutiva
-          </li>
-          <li>
-            <span class="cred-dot"></span>
-            Adopción superior al 70% y ROI documentado en 120 días en las organizaciones donde la Solución ReturnAI fue aplicada después del diagnóstico
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     BLOQUE 9 · REFUERZO / LOSS AVERSION + SEGUNDO CTA
-     Fondo: teal-subtle. Botón teal (NO dorado — B7 exclusivo).
-     CTA idéntico al B7 en texto.
-════════════════════════════════════════════════════════ -->
-<section id="refuerzo" class="section-pad">
-  <div class="container">
-    <div class="refuerzo-inner">
-      <span class="section-label">El costo de la inacción</span>
-      <h2>El costo de no intervenir el Síndrome del Paralítico es que las creencias limitantes se solidifican como cultura permanente.</h2>
-      <p>El reporte del AI Return Test documenta que las creencias limitantes no son explícitas (nadie dice "no puedo aprender") sino que operan como filtros inconscientes que sabotean cada nueva iniciativa. Sin intervención, la narrativa colectiva se convierte en "intentamos adoptar IA pero no funcionó para nosotros" —cuando en realidad nunca se intentó genuinamente porque el bloqueo psicológico nunca fue abordado.</p>
-
-      <div class="cta-wrap centered">
-        <a href="https://tidycal.com/pwgdigital/returnai" target="_blank" rel="noopener" class="btn-primary">Agendar mi sesión de análisis de resultados</a>
-        <span class="cta-support">30 minutos con un especialista en rentabilización de la IA · Sin costo · Sin compromiso de contratar</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ═══════════════════════════════════════════════════════
@@ -496,27 +434,27 @@
   <div class="container">
 
     <div class="conectores-header">
-      <span class="section-label">¿Todavía no estás listo?</span>
-      <h2>Dos puntos de entrada anteriores al Assessment</h2>
-      <p>Si el Assessment no es el paso correcto para este momento, aquí tienes los dos recursos previos de la escalera de valor ReturnAI.</p>
+      <span class="section-label ara-reveal--label">Llega al Assessment con el diagnóstico ya hecho.</span>
+      <h2 class="ara-reveal"><span class="line">Dos oportunidades para llegar al</span><span class="line">Assessment mejor preparado.</span></h2>
+      <p>Si el Assessment aún no es el instrumento correcto para este momento, aquí tienes los dos recursos previos que te acercan al retorno de tus iniciativas de IA.</p>
     </div>
 
     <div class="conectores-grid">
 
-      <!-- Conector hacia la Novela ReturnAI -->
-      <div class="conector-card">
-        <span class="conector-sublabel">Novela ReturnAI · $19.97 ebook · $29.97 impreso</span>
-        <h3>El marco metodológico del Assessment, en formato de lectura ejecutiva</h3>
-        <p>El marco metodológico del Assessment en formato de lectura ejecutiva. Quien llega al Assessment habiendo leído la Novela ReturnAI profundiza más rápido y extrae mayor valor de la sesión presencial.</p>
-        <a href="../novela-returnai-landing.html" class="btn-outline" style="min-height:48px;margin-top:8px;">Conocer la Novela ReturnAI</a>
+      <!-- Conector hacia el AI Return Test (primario — izquierda) -->
+      <div class="conector-card conector-card--primary ara-reveal--card">
+        <span class="conector-sublabel">AI Return Test · Gratuito · 25 min</span>
+        <h3>El mapa de los 10 obstáculos en tu empresa, antes de la sesión de diagnóstico</h3>
+        <p>Cuando llegas al Assessment con este mapa ya completado, la llamada se enfoca y la ruta de captura de valor queda definida desde el primer minuto.</p>
+        <a href="https://tally.so/r/Np6e5W" target="_blank" rel="noopener" class="btn-outline" style="min-height:48px;margin-top:8px;">Iniciar el diagnóstico previo</a>
       </div>
 
-      <!-- Conector hacia el AI Return Test -->
-      <div class="conector-card">
-        <span class="conector-sublabel">AI Return Test · Gratuito · 30 min</span>
-        <h3>Diagnóstico autoaplicado de los 10 obstáculos de tu organización</h3>
-        <p>Diagnóstico autoaplicado de los 10 obstáculos presentes en tu organización. Llegar al Assessment con este mapa previo enfoca la llamada y precisa el plan de intervención.</p>
-        <a href="https://tally.so/r/Np6e5W" target="_blank" rel="noopener" class="btn-outline" style="min-height:48px;margin-top:8px;">Completar el AI Return Test</a>
+      <!-- Conector hacia la Novela ReturnAI (secundario — derecha) -->
+      <div class="conector-card conector-card--secondary ara-reveal--card">
+        <span class="conector-sublabel">Novela ReturnAI · $19.97 ebook · $29.97 impreso</span>
+        <h3>Entiende el método antes de la sesión y comprende así más rápido el diagnóstico</h3>
+        <p>Cuando llegas al Assessment habiendo leído la Novela ReturnAI, profundizas más rápido y extraes mayor valor de la sesión presencial.</p>
+        <a href="../novela-returnai-landing.html" target="_blank" rel="noopener" class="btn-outline" style="min-height:48px;margin-top:8px;">Conocer la Novela ReturnAI</a>
       </div>
 
     </div>
@@ -546,7 +484,7 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">Digital Change Advisors</div>
+      <img src="../images/dca-negativo.svg" alt="Digital Change Advisors" class="footer-logo-img" width="200" height="44" loading="lazy">
       <div class="footer-divider"></div>
       <p class="footer-tagline-sub">Arquitectura de rentabilización de la IA · 70+ organizaciones · Comunidad LARIA en 17 países</p>
       <p class="footer-copy">© 2026 Digital Change Advisors LLC · Todos los derechos reservados · Modelo ARIA es marca registrada de Digital Change Advisors · <a href="https://dca-returnai.github.io/dca-website/privacy-policy.html" style="color:rgba(255,255,255,0.45);text-decoration:none;" target="_blank" rel="noopener">Política de privacidad</a> · <a href="https://dca-returnai.github.io/dca-website/terms-of-use.html" style="color:rgba(255,255,255,0.45);text-decoration:none;" target="_blank" rel="noopener">Términos de uso</a></p>
@@ -557,17 +495,98 @@
 
 
 <script>
+  // UTM propagation → TidyCal
   (function() {
     var params = new URLSearchParams(window.location.search);
     if (!params.toString()) return;
     var links = document.querySelectorAll('a[href*="tidycal.com"]');
     links.forEach(function(link) {
       var url = new URL(link.href);
-      params.forEach(function(value, key) {
-        url.searchParams.set(key, value);
-      });
+      params.forEach(function(value, key) { url.searchParams.set(key, value); });
       link.href = url.toString();
     });
+  })();
+
+  // B4 Proceso — animación secuencial de pasos
+  (function() {
+    var timeline = document.querySelector('.proceso-timeline');
+    if (!timeline) return;
+    var io = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        timeline.classList.add('in');
+        io.disconnect();
+      }
+    }, { threshold: 0.18 });
+    io.observe(timeline);
+  })();
+
+  // Sistema de animaciones ARA v1.0
+  (function() {
+    if (!('IntersectionObserver' in window)) return;
+
+    // A1/A2/A3/A4 — Reveal observer (mask, fade-up, stagger, opuestos)
+    var revealEls = document.querySelectorAll(
+      '.ara-reveal, .ara-reveal--label, .ara-reveal--card, .ara-reveal--left, .ara-reveal--right'
+    );
+    if (revealEls.length) {
+      var revealIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+      revealEls.forEach(function(el) { revealIO.observe(el); });
+    }
+
+    // B1/B2 — Count-up
+    function countUp(el, target, duration, prefix, suffix) {
+      var startTime = null;
+      prefix = prefix || ''; suffix = suffix || '';
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var p = Math.min((ts - startTime) / duration, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.round(ease * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+
+    // B1 — Métricas S3 (10 / 20 / 90 / 3)
+    var metricEls = document.querySelectorAll('.hero-metric-num[data-count]');
+    if (metricEls.length) {
+      var metricIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            var el = e.target;
+            var delay = parseInt(el.dataset.delay || 0, 10);
+            setTimeout(function() {
+              countUp(el, parseInt(el.dataset.count, 10), 1200);
+            }, delay);
+            metricIO.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      metricEls.forEach(function(el) { metricIO.observe(el); });
+    }
+
+    // B2 — 35% anclaje económico
+    var pctEl = document.getElementById('ara-count-pct');
+    if (pctEl) {
+      var pctIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            countUp(e.target, parseInt(e.target.dataset.count, 10), 1400, '', '%');
+            pctIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      pctIO.observe(pctEl);
+    }
+
   })();
 </script>
 </body>
