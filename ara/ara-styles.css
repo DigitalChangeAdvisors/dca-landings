@@ -272,9 +272,7 @@ header {
 
 /* ─── BLOQUE 2 · ENTREGABLES ─────────────────────────────── */
 #entregables {
-  background: var(--dca-white);
-  border-top: 1px solid var(--dca-platinum);
-  border-bottom: 1px solid var(--dca-platinum);
+  background: var(--dca-platinum);
 }
 .entregables-intro {
   text-align: center;
@@ -877,7 +875,7 @@ header {
 /* ─── BLOQUE 11 · TAGLINE ────────────────────────────────── */
 #tagline {
   padding: 80px 0 48px;
-  background: var(--dca-white);
+  background: var(--dca-platinum);
 }
 .tagline-inner {
   text-align: center;
