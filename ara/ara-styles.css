@@ -487,9 +487,8 @@ header {
 }
 .proceso-aria-note {
   background: var(--dca-teal-subtle);
-  border-top: 1px solid var(--dca-platinum);
-  border-bottom: 1px solid var(--dca-platinum);
-  border-radius: 4px;
+  border-left: 3px solid var(--dca-gold);
+  border-radius: 0 4px 4px 0;
   padding: 24px 32px;
   max-width: var(--text-max-width);
   margin: 0 auto;
@@ -500,6 +499,42 @@ header {
   font-size: 16px;
   color: rgba(30,42,56,0.8);
   line-height: 1.65;
+}
+
+/* ─── B4 ANIMACIÓN SECUENCIAL DE PASOS ──────────────────── */
+.js-ready .proceso-timeline::before {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+}
+.js-ready .proceso-timeline.in::before { transform: scaleX(1); }
+.js-ready .proceso-step {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js-ready .proceso-step .step-circle {
+  transform: scale(0.72);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.js-ready .proceso-timeline.in .proceso-step              { opacity: 1; transform: none; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(1) { transition-delay: 0.12s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(2) { transition-delay: 0.26s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(3) { transition-delay: 0.40s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(4) { transition-delay: 0.54s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(5) { transition-delay: 0.68s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(1) .step-circle { transform: scale(1); transition-delay: 0.07s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(2) .step-circle { transform: scale(1); transition-delay: 0.21s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(3) .step-circle { transform: scale(1); transition-delay: 0.35s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(4) .step-circle { transform: scale(1); transition-delay: 0.49s; }
+.js-ready .proceso-timeline.in .proceso-step:nth-child(5) .step-circle { transform: scale(1); transition-delay: 0.63s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .proceso-step,
+  .js-ready .proceso-step .step-circle,
+  .js-ready .proceso-timeline::before {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
 }
 
 /* ─── BLOQUE 5 · PARA QUIÉN ES ───────────────────────────── */

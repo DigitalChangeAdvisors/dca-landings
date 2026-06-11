@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ara-styles.css">
+<script>document.documentElement.classList.add('js-ready')</script>
 </head>
 <body>
 
@@ -280,7 +281,7 @@
         <div class="step-content">
           <div class="step-label">Sesión de presentación</div>
           <div class="step-duration">1 hora</div>
-          <p class="step-desc">Entrega presencial del reporte y de la ruta de captura de valor 30-60-90 días, con responsables sugeridos y métricas de seguimiento. Tu equipo sale con la siguiente acción definida y cronometrada.</p>
+          <p class="step-desc">Entrega presencial del reporte y de la ruta de captura de valor a 90 días, con responsables sugeridos y métricas de seguimiento. Tu equipo sale con la siguiente acción definida y cronometrada.</p>
         </div>
       </div>
 
@@ -562,17 +563,29 @@
 
 
 <script>
+  // UTM propagation → TidyCal
   (function() {
     var params = new URLSearchParams(window.location.search);
     if (!params.toString()) return;
     var links = document.querySelectorAll('a[href*="tidycal.com"]');
     links.forEach(function(link) {
       var url = new URL(link.href);
-      params.forEach(function(value, key) {
-        url.searchParams.set(key, value);
-      });
+      params.forEach(function(value, key) { url.searchParams.set(key, value); });
       link.href = url.toString();
     });
+  })();
+
+  // B4 Proceso — animación secuencial de pasos
+  (function() {
+    var timeline = document.querySelector('.proceso-timeline');
+    if (!timeline) return;
+    var io = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        timeline.classList.add('in');
+        io.disconnect();
+      }
+    }, { threshold: 0.18 });
+    io.observe(timeline);
   })();
 </script>
 </body>
