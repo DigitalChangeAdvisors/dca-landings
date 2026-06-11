@@ -890,6 +890,7 @@ header {
 .conectores-header h2 {
   color: var(--dca-white);
   margin-bottom: 12px;
+  font-size: clamp(18px, 2vw, 26px);
 }
 .conectores-header h2 .line { display: block; }
 .conectores-header p {
