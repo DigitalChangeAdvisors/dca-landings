@@ -115,7 +115,7 @@ CTA principal B7:
 Conector B10 → Novela:  "Conocer la Novela ReturnAI"
 Conector B10 → ART:     "Completar el AI Return Test"
 
-Tagline B11: "Donde la adopción tecnológica encuentra el KPI que importa."
+Tagline B11: "De la inversión en IA al retorno que importa." — eslogan canónico Brand Book DCA 2026 (actualizado 2026-06-11; reemplaza "Donde la adopción tecnológica…" que usaba "adopción" como fin, término prohibido)
 
 Línea ARIA B4 (verbatim):
   "El Assessment aplica el Modelo ARIA para diagnosticar los obstáculos específicos de su organización.
