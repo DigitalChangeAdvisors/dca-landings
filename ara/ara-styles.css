@@ -911,14 +911,15 @@ header {
 .conector-sublabel {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: 12px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dca-teal);
 }
 .conector-card h3 {
   color: var(--dca-carbon);
   font-size: 17px;
+  font-weight: 600;
 }
 .conector-card p {
   font-size: 15px;
