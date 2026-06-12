@@ -628,6 +628,9 @@ header {
   flex-direction: column;
   gap: 14px;
 }
+/* Col No: ítems más cortos que la col Sí — una línea extra de gap
+   (~38px) equilibra la altura visual de las dos columnas */
+.para-quien-col.no .para-quien-list { gap: 38px; }
 .para-quien-list li {
   display: flex;
   align-items: flex-start;
