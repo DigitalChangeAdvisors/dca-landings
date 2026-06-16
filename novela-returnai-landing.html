@@ -1414,7 +1414,7 @@ section { padding: 48px 0; }
         <div class="caso-stat-row">
 
           <div class="caso-stat sr">
-            <span class="caso-stat-num">$8.2M</span>
+            <span class="caso-stat-num" data-count="8.2" data-prefix="$" data-suffix="M" data-decimals="1">$8.2M</span>
             <div class="caso-stat-desc">
               <strong>Inversión en IA sin retorno</strong>
               18 meses de implementación con métricas de actividad que no movían el P&amp;L
@@ -1422,7 +1422,7 @@ section { padding: 48px 0; }
           </div>
 
           <div class="caso-stat sr">
-            <span class="caso-stat-num">120</span>
+            <span class="caso-stat-num" data-count="120">120</span>
             <div class="caso-stat-desc">
               <strong>Días de intervención</strong>
               Tiempo entre el ultimátum del CEO y el retorno documentado ante la Junta
@@ -1430,7 +1430,7 @@ section { padding: 48px 0; }
           </div>
 
           <div class="caso-stat sr">
-            <span class="caso-stat-num caso-stat-num--sm">11%→70%</span>
+            <span class="caso-stat-num caso-stat-num--sm"><span data-count="11" data-suffix="%">11%</span>→<span data-count="70" data-suffix="%">70%</span></span>
             <div class="caso-stat-desc">
               <strong>Tasa de adopción real</strong>
               Del 11% inicial al 70%+ sostenido al cierre del programa
@@ -1438,7 +1438,7 @@ section { padding: 48px 0; }
           </div>
 
           <div class="caso-stat sr">
-            <span class="caso-stat-num">$891K</span>
+            <span class="caso-stat-num" data-count="891" data-prefix="$" data-suffix="K">$891K</span>
             <div class="caso-stat-desc">
               <strong>En el P&amp;L al cierre</strong>
               Retorno medido en persistencia de clientes y reducción de costos operativos
@@ -2074,11 +2074,43 @@ section { padding: 48px 0; }
   /* Si reduced motion, hacer todo visible de inmediato y salir */
   if (reduced) {
     document.querySelectorAll('.sr').forEach(function(el) { el.classList.add('sr-in'); });
+    document.querySelectorAll('[data-count]').forEach(function(el) {
+      var prefix   = el.getAttribute('data-prefix') || '';
+      var suffix   = el.getAttribute('data-suffix') || '';
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      el.textContent = prefix + parseFloat(el.getAttribute('data-count')).toFixed(decimals) + suffix;
+    });
     return;
+  }
+
+  function countUp(el) {
+    var target   = parseFloat(el.getAttribute('data-count'));
+    var prefix   = el.getAttribute('data-prefix') || '';
+    var suffix   = el.getAttribute('data-suffix') || '';
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var duration = 1200;
+    var start    = null;
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var val = easeOut(progress) * target;
+      el.textContent = prefix + val.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   function reveal(el, delay) {
     setTimeout(function() { el && el.classList.add('sr-in'); }, delay || 0);
+  }
+
+  function revealStat(el, delay) {
+    setTimeout(function() {
+      if (!el) return;
+      el.classList.add('sr-in');
+      el.querySelectorAll('[data-count]').forEach(countUp);
+    }, delay || 0);
   }
 
   var io = new IntersectionObserver(function(entries) {
@@ -2094,7 +2126,7 @@ section { padding: 48px 0; }
         var content = s.querySelector('.espejo-content.sr');
         var pull    = s.querySelector('.espejo-pull.sr');
         reveal(card, 0);
-        stats.forEach(function(el, i) { reveal(el, i * 80); });
+        stats.forEach(function(el, i) { revealStat(el, i * 80); });
         reveal(content, 100);
         reveal(pull, 300);
       }
