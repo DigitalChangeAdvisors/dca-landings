@@ -1166,6 +1166,64 @@ section { padding: 48px 0; }
 }
 .preludio-panel__list li::marker { color: var(--dca-teal); }
 
+/* Capítulo 1 — elementos narrativos adicionales */
+.preludio-panel__epigraph {
+  border-left: 2px solid rgba(164,129,17,0.4);
+  padding: 12px 20px; margin: 0 0 36px;
+  font-style: italic; font-size: 14.5px;
+  color: rgba(255,255,255,0.5); line-height: 1.65;
+}
+.preludio-panel__divider {
+  border: none; border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 36px 0;
+}
+.preludio-panel__divider-text {
+  text-align: center !important;
+  color: rgba(255,255,255,0.22) !important;
+  font-size: 16px !important;
+  letter-spacing: 0.5em;
+  margin: 28px 0 !important;
+}
+.preludio-panel__note {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px; padding: 18px 22px; margin: 0 0 24px;
+}
+.preludio-panel__note p {
+  margin: 0 0 8px !important; font-size: 14px !important;
+  color: rgba(255,255,255,0.68) !important;
+}
+.preludio-panel__note p:last-child { margin-bottom: 0 !important; }
+.preludio-panel__bitacora {
+  border-left: 3px solid var(--dca-teal);
+  padding: 16px 20px; margin: 0 0 28px;
+  background: rgba(46,139,118,0.06);
+  border-radius: 0 6px 6px 0;
+}
+.preludio-panel__bitacora p {
+  font-style: italic !important;
+  color: rgba(255,255,255,0.8) !important;
+  font-size: 15px !important; margin: 0 0 14px !important;
+}
+.preludio-panel__bitacora p:last-child { margin-bottom: 0 !important; }
+.preludio-panel__body .preludio-panel__date {
+  margin-top: 36px; font-size: 12px !important;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+/* Ebook — outline button en panel oscuro */
+.preludio-panel__cta .btn-preludio-ebook {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; color: rgba(255,255,255,0.85);
+  font-family: var(--font-body); font-weight: 600; font-size: 14px;
+  text-decoration: none; border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  min-height: 48px; padding: 14px 28px;
+  transition: border-color 0.18s, color 0.18s;
+}
+.preludio-panel__cta .btn-preludio-ebook:hover {
+  border-color: rgba(255,255,255,0.6); color: #fff;
+}
+
 .preludio-panel__cta {
   margin-top: 48px; padding-top: 32px;
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -1366,7 +1424,7 @@ section { padding: 48px 0; }
 
 
 <!-- ═══════════════════════════════════════════
-     B3 · LEER EL PRELUDIO
+     B3 · PRIMER CAPÍTULO
      Teal 4% · Borde oro arriba · Panel slide-in
      ═══════════════════════════════════════════ -->
 <section class="block-preludio">
@@ -1374,7 +1432,7 @@ section { padding: 48px 0; }
 
     <div class="preludio-content">
       <p class="section-label">Primer capítulo</p>
-      <h2>Lee el preludio antes de comprar. Sin formulario, sin correo.</h2>
+      <h2>Lee el primer capítulo antes de comprar. Sin formulario, sin correo.</h2>
       <p class="preludio-body">Adalid conduce a casa después del ultimátum de su CEO. Ciento veinte días para demostrar retorno — o el proyecto se cancela. Así comienza la novela.</p>
 
       <button id="btn-preludio" class="btn-primary" aria-expanded="false" aria-controls="preludio-panel">
@@ -1389,7 +1447,7 @@ section { padding: 48px 0; }
         <p style="margin:0;font-style:inherit;">Las luces de la ciudad se difuminaban a través del parabrisas. Adalid no recordaba haber tomado la salida hacia su casa...</p>
       </div>
       <div class="preludio-fragment-blur"></div>
-      <p class="preludio-fragment-label">Continúa en el preludio completo</p>
+      <p class="preludio-fragment-label">Continúa en el primer capítulo</p>
     </div>
 
   </div>
@@ -1715,56 +1773,147 @@ section { padding: 48px 0; }
 <div id="preludio-panel" class="preludio-panel" role="dialog" aria-modal="true" aria-labelledby="preludio-panel-title" hidden>
   <div class="preludio-panel__backdrop"></div>
   <div class="preludio-panel__drawer">
-    <button class="preludio-panel__close" aria-label="Cerrar preludio">&times;</button>
+    <button class="preludio-panel__close" aria-label="Cerrar primer capítulo">&times;</button>
     <div class="preludio-panel__inner">
       <div class="preludio-panel__header">
-        <span class="preludio-panel__tag">Preludio</span>
-        <h2 class="preludio-panel__title" id="preludio-panel-title">El momento en que todo cambió</h2>
-        <time class="preludio-panel__date">Miércoles, 15 de octubre · 10:07 p.m.</time>
+        <span class="preludio-panel__tag">Capítulo 1</span>
+        <h2 class="preludio-panel__title" id="preludio-panel-title">El ultimátum de hierro</h2>
+        <time class="preludio-panel__date">Día 01 · Miércoles, 15 de octubre · 6:58 a.m.</time>
       </div>
       <div class="preludio-panel__body">
-        <p>Adalid Puentes conducía por la autopista vacía con las manos aferradas al volante y una sola frase martillando su cabeza:</p>
-        <p class="preludio-panel__quote">«Tienes ciento veinte días».</p>
-        <p>La reunión de esa mañana había durado cuarenta y siete minutos. Pero sus palabras lo perseguirían durante los próximos cuatro meses.</p>
-        <p>Las luces de la ciudad se difuminaban a través del parabrisas. Adalid no recordaba haber tomado la salida hacia su casa. Su cerebro operaba en piloto automático mientras reproducía, una y otra vez, el momento exacto en que Ricardo Mendoza —su CEO— le había dado el ultimátum.</p>
-        <p>Adalid cambió de carril sin señalizar. Un claxon furioso lo devolvió al presente por tres segundos, antes de que su mente regresara a la sala de juntas.</p>
-        <p class="preludio-panel__quote">«Desembolsar ocho millones sin retorno no es una inversión, Adalid. Es un gasto que no puedo justificar».</p>
-        <p>Había dicho Ricardo con ese pragmatismo radical que solo un CFO que ha ascendido a CEO puede expresar.</p>
-        <p>Adalid apretó el volante hasta que sus nudillos se volvieron blancos.</p>
-        <p class="preludio-panel__emphasis">Dieciocho meses.</p>
-        <p>Dieciocho meses presentando al comité ejecutivo que «la transformación con IA iba según lo planeado». Dieciocho meses celebrando métricas de actividad que no movían un solo indicador de negocio. Dieciocho meses viviendo en una torre de marfil mientras su proyecto se desangraba en silencio.</p>
-        <p>Y lo peor no era el fracaso profesional.</p>
-        <p>Lo peor era que había estado tan ciego, que genuinamente creía estar teniendo éxito. Hasta esa mañana.</p>
-        <p>El semáforo en rojo lo detuvo a tres cuadras de su casa. Adalid miró su reflejo en el retrovisor.</p>
-        <p>Cuarenta y dos años. Ingeniero de Sistemas de Los Andes. Maestría en el MIT. Dieciocho meses como Director de Transformación Digital de la empresa de seguros más tradicional del país.</p>
-        <p class="preludio-panel__emphasis">Y en ciento veinte días podría estar desempleado.</p>
-        <p>No. Peor que desempleado. Podría ser el caso de estudio que los consultores usarían como ejemplo de «cómo destruir ocho millones de dólares con las mejores intenciones».</p>
-        <p>El semáforo cambió a verde. Adalid no se movió. Detrás de él, un camión de carga tocó el claxon con insistencia. Adalid levantó la mano en señal de disculpa y avanzó.</p>
-        <p>En tres cuadras llegaría a su casa. Laura estaría despierta —siempre lo estaba cuando él llegaba tarde. Y tendría esa mirada que decía más que mil palabras: <em>De nuevo elegiste el trabajo</em>.</p>
-        <p>Adalid no sabía cómo decirle que esta vez el trabajo lo había elegido a él.</p>
-        <p>Estacionó el coche en la entrada y apagó el motor. La casa estaba en silencio, pero la luz del estudio seguía encendida. Adalid cerró los ojos y exhaló lentamente.</p>
-        <p class="preludio-panel__emphasis">Ciento veinte días.</p>
-        <p>En ciento veinte días tendría que demostrar:</p>
+        <p class="preludio-panel__epigraph">"En tiempos de cambio radical, el mayor peligro no es la turbulencia; es actuar con la lógica de ayer." — Peter Drucker</p>
+
+        <p class="preludio-panel__date">Día 01 · Miércoles 15 de octubre, 6:58 a.m. — Quince horas antes.</p>
+
+        <p>Adalid Puentes entró en la sala de juntas principal de Seguros Continental sosteniendo su laptop contra el pecho como escudo.</p>
+        <p>La mesa de nogal reflejaba la luz fría de la mañana que entraba por los ventanales del piso veintitrés.</p>
+        <p>Ricardo Mendoza ya estaba sentado en la cabecera, con las gafas puestas y dos carpetas físicas frente a él. No había café. No había pantallas encendidas. Solo silencio y madera pulida.</p>
+        <p>Adalid ocupó su lugar habitual, a tres sillas de distancia del CEO, y abrió su laptop con movimientos precisos.</p>
+        <p>La pantalla se iluminó mostrando un dashboard de métricas verdes: noventa y dos por ciento de empleados capacitados en IA, veintiún pilotos activos, certificaciones completadas en tiempo récord.</p>
+        <p>Se sintió seguro tras esas cifras.</p>
+        <p>Ricardo no levantó la vista.</p>
+        <p>—Buenos días, Adalid.<br>—Buenos días, Ricardo.</p>
+        <p>El CEO deslizó la primera carpeta hacia el centro de la mesa sin mirar a Adalid. El movimiento fue lento, deliberado, preciso.</p>
+        <p class="preludio-panel__quote">—Esta es la inversión acumulada en tu proyecto de Inteligencia Artificial durante los últimos dieciocho meses.</p>
+        <p>Adalid no necesitó abrir la carpeta. Conocía el número de memoria: 8,2 millones de dólares.</p>
+        <p>—Licencias empresariales de las plataformas de IA más avanzadas del mercado, capacitación certificada para mil seiscientos cincuenta y seis empleados, consultoría de implementación con tres firmas externas, infraestructura cloud escalable.</p>
+        <p>Ricardo hizo una pausa.</p>
+        <p class="preludio-panel__quote">—Ocho punto dos millones.</p>
+        <p>—Correcto. Y los resultados ya empiezan a verse: noventa y dos por ciento de la plantilla ya está capacitada. Veintiún pilotos en ejecución. Las métricas de actividad…</p>
+        <p>Ricardo levantó la mano.</p>
+        <p class="preludio-panel__quote">—Actividad —repitió la palabra como si fuera un diagnóstico médico—. Dime, Adalid, ¿cuántos de esos veintiún pilotos están generando retorno medible en el P&amp;L?</p>
+        <p>El aire en la sala cambió de temperatura.</p>
+        <p>Adalid sintió un chasquido seco en la mandíbula. Un reflejo que conocía bien: bruxismo. La tensión se instaló en sus maseteros como una prensa hidráulica invisible.</p>
+        <p>—Estamos midiendo indicadores tempranos. Adopción, engagement, tiempo de respuesta. La transformación digital es un proceso, Ricardo. No se mide en…</p>
+        <p class="preludio-panel__emphasis">—Cero.</p>
+        <p>La palabra cayó sobre la mesa como un mazo.</p>
+        <p>Ricardo abrió la segunda carpeta y giró una hoja impresa hacia Adalid. Era un análisis financiero preparado por el equipo del CFO. Tres columnas: Inversión Acumulada, Retorno Documentado, Delta. La tercera columna era un desierto de ceros rojos.</p>
+        <p class="preludio-panel__quote">—Cero dólares de retorno verificable en dieciocho meses, Adalid. Ni un solo KPI movido. Ni una línea del P&amp;L impactada.</p>
+        <p>Ricardo se quitó las gafas y lo miró directamente.</p>
+        <p class="preludio-panel__quote">—Desembolsar ocho millones sin retorno no es una inversión; es un gasto que no puedo justificar ante el Board.</p>
+        <p>Su mano derecha, oculta bajo la mesa de nogal, comenzó a temblar. Un temblor fino, eléctrico, que subía desde la muñeca hasta los dedos.</p>
+        <p>—Ricardo, las métricas de actividad son indicadores tempranos válidos. No puedes esperar ROI inmediato en…</p>
+        <p class="preludio-panel__quote">—Puedo. Y lo espero. Porque mientras tú mides engagement, la competencia ya está usando la IA para reducir tiempos de suscripción en un cuarenta por ciento y mejorar la retención de clientes en un veintidós. Eso no son indicadores tempranos. Es dinero real.</p>
+        <p>Ricardo cerró las carpetas y las apiló con exactitud milimétrica.</p>
+        <p class="preludio-panel__quote">—La Junta me dio ciento veinte días para ver ROI real o parar las iniciativas de IA en marcha.</p>
+        <p class="preludio-panel__emphasis">El número quedó suspendido en el aire como una sentencia.</p>
+        <p class="preludio-panel__quote">—Ciento veinte días para demostrar tres cosas. Uno: nivel de adopción real superior al setenta por ciento — personas usando la IA en su flujo de trabajo diario, no gente que completó un curso online. Dos: al menos uno de esos veintiún pilotos en producción generando valor documentado. Tres: ROI medible en al menos un KPI crítico del negocio con impacto directo en el P&amp;L.</p>
+        <p>Ricardo se puso de pie.</p>
+        <p class="preludio-panel__quote">—Si en ciento veinte días no se cumplen esos tres objetivos, el Board cancela el proyecto de IA. Y yo tendré que reconsiderar tu posición en la compañía.</p>
+        <p class="preludio-panel__quote">—Miércoles once de febrero del año entrante. Esa es tu fecha límite. No necesito más reportes con métricas optimistas. Necesito resultados.</p>
+        <p>El CEO salió de la sala sin despedirse.</p>
+        <p>Adalid se quedó sentado, inmóvil, con su laptop todavía abierta mostrando el dashboard de métricas verdes que ahora se sentían como una mentira en alta resolución.</p>
+        <p>Y por primera vez en dieciocho meses, Adalid Puentes entendió que no estaba liderando una transformación. Estaba al borde de un colapso profesional.</p>
+
+        <hr class="preludio-panel__divider">
+        <p class="preludio-panel__date">Miércoles 15 de octubre, 11:34 a.m. — Los diez obstáculos</p>
+
+        <p>Adalid llevaba casi cuatro horas frente a su computadora, revisando los veintiún pilotos con una nueva lente: la del fracaso inminente.</p>
+        <p><em>Piloto 4 (Scoring predictivo de leads):</em> dieciocho vendedores con acceso; tres usuarios activos en el último mes.</p>
+        <p><em>Piloto 7 (Automatización de reportes financieros):</em> sistema funcionando al cien por ciento; cero despliegue en producción por «falta de aprobación del comité de governance».</p>
+        <p><em>Piloto 12 (Chatbot de soporte interno):</em> dos mil quinientas interacciones en el primer mes; cuarenta y tres en el último trimestre.</p>
+        <p>Cada piloto era una variación del mismo patrón: infraestructura disponible, capacitación completada, adopción inexistente. No era un problema técnico. Era algo más profundo.</p>
+        <p>Adalid abrió una nueva pestaña y escribió en el buscador: <em>Why AI adoption fails?</em> Los primeros resultados eran exactamente lo que esperaba: McKinsey, Deloitte, Gartner, BCG. Los había leído todos.</p>
+        <p>Siguió bajando. Casi al final de la primera página, había una entrada que no encajaba con el resto. Un blog sin diseño corporativo. El autor: Alejandro Ríos, socio consultor con más de una década en transformación digital. El título era directo, casi descortés:</p>
+        <p class="preludio-panel__quote">«Your AI isn't failing. Your organization is.»</p>
+        <p>En el tercer párrafo, Ríos escribía:</p>
+        <p class="preludio-panel__quote">«En diez años trabajando con 35 empresas en México, Colombia, Perú, Chile y Argentina, documenté los mismos patrones de fracaso. Siempre los mismos. No en la tecnología. En las personas que se supone deben usarla.»</p>
+        <p>Y luego, sin preámbulo académico, venía la lista. Los diez obstáculos humanos y organizacionales que bloquean la adopción de la IA:</p>
         <ul class="preludio-panel__list">
-          <li>Setenta por ciento de incorporación real de la IA en el flujo de trabajo diario.</li>
-          <li>Al menos un piloto en producción generando valor documentado.</li>
-          <li>ROI medible en algún KPI del negocio con impacto en el P&amp;L.</li>
+          <li>Falta de claridad en la contribución de valor</li>
+          <li>Fricción de governance</li>
+          <li>Desalineación en políticas de talento</li>
+          <li>Silos culturales</li>
+          <li>Brecha generacional</li>
+          <li>Liderazgo desconectado</li>
+          <li>Creencias limitantes</li>
+          <li>Síndrome del impostor digital</li>
+          <li>Capacitación sin impacto</li>
+          <li>Miedo al desplazamiento</li>
         </ul>
-        <p>O su programa se cancelaría. Y posiblemente su empleo también.</p>
-        <p>Adalid abrió la puerta del coche y caminó hacia la entrada de su casa. Sus zapatos resonaban sobre el concreto con un ritmo que sonaba a cuenta regresiva.</p>
-        <p class="preludio-panel__countdown">Ciento veinte días.<br>Ciento diecinueve.<br>Ciento dieciocho.</p>
-        <p>Giró la llave en la cerradura.</p>
-        <p>Lo que Adalid no sabía esa noche —lo que descubriría en las siguientes semanas— era que su fracaso no era único. No era incompetencia personal. No era mala suerte. No eran errores aislados.</p>
-        <p class="preludio-panel__emphasis">Era un patrón sistémico documentado en más de trescientas empresas.</p>
-        <p class="preludio-panel__closing">Esta es su historia.<br><strong>Podría ser la tuya.</strong></p>
+        <p>Adalid leyó la lista tres veces. Al pie del artículo había siete comentarios. Cinco de ellos decían, con distintas palabras, prácticamente lo mismo: «Esto describe con precisión lo que vivimos en nuestra empresa.» Eran directivos anónimos que habían reconocido su propio fracaso en el texto de un desconocido.</p>
+        <p class="preludio-panel__emphasis">¿Y si el noventa y cinco por ciento de las empresas que invertían en IA tenían exactamente este problema?</p>
+        <p>Buscó el perfil del autor. En LinkedIn, la descripción era escueta: «Socio en Digital Change Advisors.»</p>
+        <p class="preludio-panel__emphasis">Adalid se quedó inmóvil. Conocía ese nombre.</p>
+
+        <p class="preludio-panel__divider-text">* * *</p>
+
+        <p>Cuatro meses atrás, en junio, Ricardo había cerrado la puerta de su oficina con inusual seriedad.</p>
+        <p class="preludio-panel__quote">—Adalid, los pilotos no están avanzando por un problema técnico. Están estancados por un problema humano. La gente no está adoptando la IA porque tiene miedo, porque no confía, porque sus jefes no modelan el cambio. Esto no se arregla con el mejor código.</p>
+        <p>—Ricardo, con todo respeto, contratamos las mejores herramientas. Invertimos en capacitación. Necesitamos más disciplina operativa, no más… psicología corporativa.</p>
+        <p>Ricardo había sostenido su mirada durante cinco segundos.</p>
+        <p class="preludio-panel__quote">—Hay alguien que te puede ayudar a ver esto desde otra perspectiva. Se llama Mónica Reyes. Trabajó conmigo cuando hice la transición de CFO a CEO. Llámala. Antes de que sea demasiado tarde.</p>
+        <p>Adalid había tomado la tarjeta con cortesía profesional. En su mente, la etiqueta ya estaba puesta: <em>Consultora soft. Temas blandos. No va a mover la aguja del ROI.</em></p>
+        <p>La tarjeta había terminado en el segundo cajón de su escritorio, enterrada bajo manuales técnicos y certificaciones cloud. Cuatro meses después, seguía ahí.</p>
+
+        <p class="preludio-panel__divider-text">* * *</p>
+
+        <p>Adalid abrió el segundo cajón. Ahí estaba. Intacta.</p>
+        <div class="preludio-panel__note">
+          <p><strong>Dra. Mónica Reyes, PhD</strong></p>
+          <p>Digital Change Advisors</p>
+          <p>Especialista en Rentabilización de la IA</p>
+        </div>
+        <p>Cuatro meses atrás había leído esas tres líneas y había tomado una decisión en menos de tres segundos. Ahora acababa de leer durante cuarenta minutos a un socio de esa misma firma describir con total precisión el problema que había destruido dieciocho meses de trabajo.</p>
+        <p class="preludio-panel__emphasis">Y Ricardo lo había sabido. Cuatro meses atrás.</p>
+        <p>No iba a lograrlo optimizando código. Mañana, a primera hora, le enviaría un correo. No porque creyera en «lo humano» como solución, sino porque se había quedado sin opciones técnicas.</p>
+
+        <hr class="preludio-panel__divider">
+        <p class="preludio-panel__date">Miércoles 15 de octubre, 10:23 p.m. — En casa de Adalid</p>
+
+        <p>Adalid llegó a su casa a las 10:23 p.m. La luz de la cocina estaba encendida. Laura había dejado una nota sobre la isla de granito, junto a una taza de café frío que Adalid había olvidado esa mañana.</p>
+        <div class="preludio-panel__note">
+          <p><strong>Dashboard Familiar — Q3 2025</strong></p>
+          <p>Compromiso 1: Cenas familiares (5 días/semana)<br>Resultado: 73% ausencias · Desviación: −46 puntos vs objetivo</p>
+          <p>Compromiso 2: Proyecto universidad Santiago<br>Estatus: 0% avance (última revisión hace 47 días)</p>
+          <p>Compromiso 3: Fin de semana fuera de la ciudad<br>Estatus: Cancelado (2 veces) · Última conversación: Hace 9 días</p>
+          <p><em>No necesito disculpas. Necesito un plan con fechas.</em><br>— Laura</p>
+        </div>
+        <p>Era el mismo peso que había sentido en la sala de juntas unas horas atrás. Laura no estaba pidiendo atención emocional; estaba presentando un reporte de desviaciones. Y usaba el mismo lenguaje que él: métricas, compromisos, cumplimiento.</p>
+        <p>Laura estaba en la habitación principal, leyendo en su iPad. Levantó la vista cuando Adalid entró, pero no dijo nada. Solo lo miró con la misma expresión que Ricardo había usado esa mañana: <em>Ya no quiero palabras. Quiero resultados.</em></p>
+        <p class="preludio-panel__quote">—Adalid, no necesito que me digas que has estado ausente. Ya lo sé. Lo que necesito es saber si esto es temporal o permanente, porque si es permanente, necesitamos redefinir qué significa esta familia. Y si es temporal, necesito fechas. No promesas. Fechas.</p>
+        <p>—Es temporal. Tengo ciento veinte días para…</p>
+        <p class="preludio-panel__quote">—Llevas diciendo que es temporal durante tres años —lo interrumpió Laura—. Y cada vez que lo dices, la línea de tiempo se extiende otros seis meses. No estoy pidiendo que renuncies a tu trabajo, estoy pidiendo que definas cuánto más vas a posponer esta familia.</p>
+        <p>Adalid no tenía respuesta, porque Laura tenía razón. Durante tres años, había postergado lo importante no urgente por lo urgente importante. Y ahora estaba a punto de perder ambos.</p>
+
+        <hr class="preludio-panel__divider">
+        <p class="preludio-panel__date">Miércoles 15 de octubre, 11:47 p.m. — Bitácora digital</p>
+
+        <div class="preludio-panel__bitacora">
+          <p>Ningún sistema que está a punto de colapsar lo anuncia con métricas verdes. Eso tendría que haberlo sabido antes.</p>
+          <p>¿Cuántos de tus KPIs miden lo que puedes controlar en lugar de medir lo que realmente mueve el negocio?</p>
+          <p>Laura presentó un dashboard. Mismo formato que Ricardo, mismos ceros. Las personas que te quieren aprenden a hablar el único idioma que procesas.</p>
+          <p>Primer movimiento: contactar a quien Ricardo recomendó hace cuatro meses y yo descarté en tres segundos. No voy convencido. No sé si eso importa.</p>
+        </div>
+
+        <p class="preludio-panel__countdown">Día uno de ciento veinte.<br>El reloj marcaba las 11:59 p.m.</p>
+        <p class="preludio-panel__closing">En sesenta segundos, sería jueves.<br><strong>Adalid Puentes tendría ciento diecinueve días para resolver el problema correcto.</strong></p>
       </div>
       <div class="preludio-panel__cta">
-        <p>Lo que Adalid encontró en los siguientes 120 días está documentado en la novela. El punto de partida de esa transformación es el mismo instrumento que puedes aplicar hoy.</p>
+        <p>Lo que Adalid aplicó en los siguientes 119 días está documentado en la novela. Si te identificas con su punto de partida, el libro te da la secuencia completa.</p>
         <div class="preludio-panel__cta-group">
-          <a href="#amazon-link" target="_blank" rel="noopener" class="btn-preludio-amazon">Obtener el libro en Amazon →</a>
-          <a href="https://tally.so/r/Np6e5W" target="_blank" rel="noopener" class="btn-preludio-art">
-            O inicia el AI Return Test — el diagnóstico que Adalid aplicó →
-          </a>
+          <a href="#amazon-impreso" target="_blank" rel="noopener" class="btn-preludio-amazon">Impreso — $29.97 en Amazon →</a>
+          <a href="#amazon-ebook" target="_blank" rel="noopener" class="btn-preludio-ebook">Ebook — $19.97 en Amazon →</a>
         </div>
       </div>
     </div>
