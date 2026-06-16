@@ -67,7 +67,8 @@ p  { line-height: 1.6; }
 /* Pirámide invertida */
 .hero-h1 .line,
 .cta-main-inner h2 .line,
-.novela-h1 .line { display: block; }
+.novela-h1 .line,
+.metodo-intro h2 .line { display: block; }
 
 /* ─── LAYOUT ─── */
 .container {
@@ -727,6 +728,7 @@ section { padding: 48px 0; }
 .metric-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 14px 36px rgba(30,42,56,0.10), 0 2px 8px rgba(46,139,118,0.07);
+  transition-delay: 0ms;
 }
 .metric-item.metric-in:hover { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
@@ -1567,11 +1569,13 @@ section { padding: 48px 0; }
 
     <div class="metodo-intro">
       <p class="section-label">El Modelo ARIA</p>
-      <h2>Lo que Adalid aplicó en la novela existe. Está validado en campo.</h2>
+      <h2>
+        <span class="line">Lo que Adalid aplicó en la novela existe.</span>
+        <span class="line">Está validado en campo.</span>
+      </h2>
       <div class="section-accent"></div>
       <div class="mt-24">
-        <p>ARIA — Aceleración del Retorno de la Inteligencia Artificial. 14 instrumentos propietarios, 6 Sprints en 120 días, garantía contractual de retorno documentado. Validado en más de 70 empresas en Latinoamérica.</p>
-        <p style="margin-top:12px;">El AI Return Test es el primer instrumento del Modelo — el mismo diagnóstico que Adalid aplica en el Capítulo 3 antes de que comience la intervención.</p>
+        <p>El Modelo ARIA fue construido para que el retorno sea medible, no estimado. Cada componente tiene un output específico en el P&L — no en métricas de actividad.</p>
       </div>
     </div>
 
@@ -1593,15 +1597,15 @@ section { padding: 48px 0; }
       </div>
 
       <div class="metric-item">
-        <span class="metric-number" data-count="100" data-suffix="%">100%</span>
-        <span class="metric-label">Con garantía contractual de resultado</span>
+        <span class="metric-number" data-count="6">6</span>
+        <span class="metric-label">Sprints en secuencia invariante</span>
       </div>
 
     </div>
 
     <div class="metodo-footer">
-      <p class="metodo-authorship">Digital Change Advisors, LLC. · Sheridan, Wyoming, EE.UU.</p>
-      <p class="metodo-connector">La novela no promete lo que el Modelo no puede entregar. Cada cifra del caso de Adalid corresponde a datos reales de intervenciones documentadas.</p>
+      <p class="metodo-authorship">Digital Change Advisors, LLC. · Firma registrada en EE.UU. · Operaciones en Colombia, Panamá y México</p>
+      <p class="metodo-connector">El Modelo ARIA no es el marco teórico de la novela. Es la intervención activa que opera hoy en organizaciones de Latinoamérica.</p>
     </div>
 
   </div>
