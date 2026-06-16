@@ -296,11 +296,18 @@ section { padding: 48px 0; }
 
 .hero-cta-group {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-@media (max-width: 767px) { .hero-cta-group { align-items: stretch; } }
+@media (max-width: 767px) {
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+}
 
 /* Libro flotante — presencia física, no e-commerce */
 .novela-cover-wrap {
@@ -1254,9 +1261,10 @@ section { padding: 48px 0; }
       </p>
 
       <div class="hero-cta-group">
-        <!-- CTA hero → Amazon directo -->
-        <a href="#amazon-link" target="_blank" rel="noopener" class="btn-primary">Acceder al Método ARIA →</a>
-        <span class="price-note">Impreso $29.97 &nbsp;·&nbsp; Ebook $19.97</span>
+        <!-- CTA hero → Amazon: Impreso (activar con URL real) -->
+        <a href="#amazon-impreso" target="_blank" rel="noopener" class="btn-primary">Impreso — $29.97 en Amazon →</a>
+        <!-- CTA hero → Amazon: Ebook (activar con URL real) -->
+        <a href="#amazon-ebook" target="_blank" rel="noopener" class="btn-outline">Ebook — $19.97 en Amazon →</a>
       </div>
     </div>
 
