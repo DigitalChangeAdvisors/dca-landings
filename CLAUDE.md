@@ -217,7 +217,7 @@ Cambiar el selector en el script según el destino del formulario de conversión
 ## Repositorio de Despliegue
 
 - **Dev (monorepo):** `DCA-ReturnAI/dca-presencia-digital-dev` — carpeta `landings/`
-- **Producción:** `DCA-ReturnAI/dca-landings` — GitHub Pages activo: `https://dca-returnai.github.io/dca-landings/`
+- **Producción:** `DCA-ReturnAI/dca-landings` — GitHub Pages activo: `https://digitalchangeadvisors.github.io/dca-landings/`
 - **Deploy canónico** (ejecutar desde `Presencia Digital DCA/`):
   ```bash
   git subtree split --prefix=landings -b deploy-tmp-landings && \
@@ -248,7 +248,7 @@ Cambiar el selector en el script según el destino del formulario de conversión
 - ✅ Voz de marca: "su organización" → "tu organización" en todo el copy
 - ✅ B10 rutas relativas corregidas (`../novela-returnai-landing.html` desde v0; `../../` desde arquetipos)
 - ✅ UTM script de propagación integrado en todos (selector `a[href*="tidycal.com"]`)
-- ✅ Desplegado en producción: `https://dca-returnai.github.io/dca-landings/ara/`
+- ✅ Desplegado en producción: `https://digitalchangeadvisors.github.io/dca-landings/ara/`
 
 ### Ajuste estructural S1 hero ARA (2026-06-10)
 - ✅ 7 íconos integrados: `landings/images/ara-icon-[slug].png` (210×210px, en repo)
@@ -289,10 +289,16 @@ Cambio de arquetipo → editar solo ese archivo → deploy
 ### Pendiente
 - ⏳ Fine-tuning visual ARA (iniciar por v0, luego propagate.py)
 - ⏳ Generar e insertar imagen de ara/v0 (Gemini) + videos personalizados cuando estén en producción
-### Fine-tuning Novela ReturnAI — CERRADO DEFINITIVO (2026-06-17)
+### ⚠️ RETIRADA — `novela-returnai-landing.html` es ahora una redirección (2026-07-14)
+
+**`landings/novela-returnai-landing.html` ya no es la landing de la novela — es una página de redirección permanente** hacia `https://www.digitalchangeadvisors.com/novela-returnai`. Motivo: artefacto de una prueba anterior sin tráfico activo (ningún canal vivo de DCA la enlazaba — verificado con grep en todo el repo), y mantenerla como página independiente creaba mantenimiento duplicado permanente frente a la landing real de producción, que ya tiene sus propios CTAs de compra reparados (ver `project_novela_returnai_ctas_fix.md` para el historial completo del fix de anclas rotas y esta decisión de retiro).
+
+El archivo usa tres mecanismos combinados (`<meta http-equiv="refresh">`, `<link rel="canonical">`, `<meta name="robots" content="noindex, follow">` + enlace visible de respaldo) para funcionar incluso sin JavaScript. **Todo el historial de fine-tuning B1–B8 de abajo queda como registro histórico de una página que ya no existe en ese archivo — no reactivar como página independiente sin decisión explícita.**
+
+### Fine-tuning Novela ReturnAI — CERRADO DEFINITIVO (2026-06-17) — histórico, archivo ahora retirado (ver nota arriba)
 
 **Archivo:** `landings/novela-returnai-landing.html` (no `novela/index.html` — versión anterior)
-**Producción:** `https://dca-returnai.github.io/dca-landings/novela-returnai-landing.html`
+**Producción:** `https://digitalchangeadvisors.github.io/dca-landings/novela-returnai-landing.html`
 
 #### B1 Hero — CERRADO (2026-06-16)
 - ✅ Eyebrow: "Modelo ARIA · Novela Ejecutiva · Digital Change Advisors"
@@ -397,6 +403,13 @@ Cambio de arquetipo → editar solo ese archivo → deploy
 #### Pendiente externo — Novela
 - ⏳ Amazon URLs: `href="#amazon-impreso"` / `href="#amazon-ebook"` en B1 Hero, B3 panel y B6 CTA → activar con URLs reales de Amazon cuando el libro esté listado (acción externa, no bloquea el cierre del fine-tuning)
 
+### Corrección — dominio inexistente `returnai.com` en `art/index.html` (2026-07-14)
+- ✅ 3 enlaces en `art/index.html` apuntaban a `returnai.com` — dominio **nunca adquirido por DCA**, no resuelve, confundido con la ruta real del sitio principal (`digitalchangeadvisors.com`). Verificado con grep en todo el repo `dca-landings`: no había más ocurrencias fuera de este archivo.
+  - Línea ~2545 (CTA principal B7, `Iniciar mi diagnóstico`): `returnai.com/test/` → `https://tally.so/r/Np6e5W` (URL canónica del instrumento)
+  - Línea ~2589 (conector footer → Novela): `returnai.com/novela/` → `https://www.digitalchangeadvisors.com/novela-returnai`
+  - Línea ~2596 (conector footer → AI Return Assessment): `returnai.com/assessment/` → `https://www.digitalchangeadvisors.com/ara`
+- Mismo patrón de bug que las anclas `#amazon-*` reparadas en `/novela-returnai` — un dominio o ruta placeholder que nunca se activó con la URL real. Ver `project_novela_returnai_ctas_fix.md`.
+
 ### Fine-tuning ART — CERRADO DEFINITIVO (2026-06-09)
 - ✅ Repo `dca-landings` creado y remote `production-landings` configurado
 - ✅ Header/Footer corregidos: logo v2.2 canónico integrado
@@ -405,14 +418,14 @@ Cambio de arquetipo → editar solo ese archivo → deploy
 - ✅ 3 CTAs con arquitectura canónica: header + hero + B10, todos directamente a Tally URL
 - ✅ Script UTM propagation integrado (justo antes de `</body>`, línea 2399)
 - ✅ Todos los términos prohibidos corregidos (LADA→LARIA, 247+→250+, adopción como fin)
-- ✅ Desplegado en producción: `https://dca-returnai.github.io/dca-landings/ai-return-test-landing.html`
+- ✅ Desplegado en producción: `https://digitalchangeadvisors.github.io/dca-landings/ai-return-test-landing.html`
 
 ---
 
 ## Fine-Tuning ART Landing — Orden Canónico y Decisiones (2026-06-08)
 
 > Auditoría ejecutada por `/ui-ux-pro-max` + `/behavioral-economics-c-level` en sesión 34011bfd.  
-> Archivo: `landings/ai-return-test-landing.html` · Staging: `https://dca-returnai.github.io/dca-landings/ai-return-test-landing.html`
+> Archivo: `landings/ai-return-test-landing.html` · Staging: `https://digitalchangeadvisors.github.io/dca-landings/ai-return-test-landing.html`
 
 ### Nueva Secuencia Canónica (10 bloques + Header + Footer)
 
